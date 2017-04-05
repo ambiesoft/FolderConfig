@@ -1,0 +1,1 @@
+Should be created by C#, this function must be dll when app need to get data.
