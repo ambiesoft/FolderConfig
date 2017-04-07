@@ -24,6 +24,15 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Form1.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Form1InitializeComponent.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MyUtility\IsFilenamable.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Form1.h">
@@ -33,6 +42,12 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MyUtility\IsFilenamable.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

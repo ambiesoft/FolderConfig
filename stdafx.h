@@ -3,6 +3,7 @@
 
 #pragma warning(disable: 4100)
 
+#include <cassert>
 #include <string>
 
 

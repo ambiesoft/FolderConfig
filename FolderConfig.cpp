@@ -7,11 +7,17 @@
 #include "../MyUtility/IsFileNamable.h"
 #pragma comment(lib, "Shell32.lib")
 
-using namespace std;
+
 using namespace Ambiesoft;
 using namespace Ambiesoft::FolderConfig;
+using namespace System::Text;
 
+using std::wstring;
 
+String^ toCLR(const wstring& s)
+{
+	return gcnew String(s.c_str());
+}
 
 ref struct PowWrite
 {
@@ -76,13 +82,15 @@ String^ getHelpMessage()
 {
 	return I18N(
 		"Usage:\r\n"
-		"FolderConfig.exe [/title title] /inifile inifile [/defaultpath defaultpath] /creator creator /appname appname\r\n"
+		"FolderConfig.exe [/title title] /inifile inifile [/defaultpath defaultpath] /creator creator /appname appname [/section section]\r\n"
 		"\r\n"
 		"title: Title shown in Titlebar.\r\n"
 		"inifile: filename user chosen data will be saved.\r\n"
 		"defaultpath: Default path of inifile.\r\n"
 		"creator: Creator name used as subfolder of roaming or local folder.\r\n"
-		"appname: App name user as subfolder of creator.");
+		"appname: App name user as subfolder of creator."
+		"section: Section name of config"
+		);
 
 }
 void ErrorExit(String^ s)
@@ -96,8 +104,7 @@ void ErrorExit(String^ s)
 	System::Environment::Exit(1);
 }
 
-[STAThreadAttribute]
-int main(array<System::String ^> ^args)
+bool parseOption()
 {
 	CCommandLineParser parser;
 	COption opTitle(L"/title", 1);
@@ -114,6 +121,10 @@ int main(array<System::String ^> ^args)
 
 	COption opAppName(L"/appname", 1);
 	parser.AddOption(&opAppName);
+
+	COption opSection(L"/section", 1);
+	parser.AddOption(&opSection);
+
 
 	parser.Parse();
 
@@ -135,9 +146,13 @@ int main(array<System::String ^> ^args)
 		if(!IsFullPathNamble(opIniFile.getValueStrings().c_str()))
 		{
 			ErrorExit(I18N(String::Format(L"{0} must not include {1}.",
-				opIniFile.getValueCount(), GetFullPathInamableCharsCLR())));
+				toCLR(opIniFile.getValueStrings()), GetFullPathInamableCharsCLR())));
 		}
-		Settings::iniFileName=gcnew String(opIniFile.getValueStrings().c_str());
+		
+		String^ dir = System::IO::Directory::GetParent(System::Windows::Forms::Application::ExecutablePath)->FullName;
+		String^ file = gcnew String(opIniFile.getValueStrings().c_str());
+		String^ fullpath = System::IO::Path::Combine(dir,file);
+		Settings::iniFileName = fullpath;
 	}
 	if(String::IsNullOrEmpty(Settings::iniFileName))
 	{
@@ -150,7 +165,7 @@ int main(array<System::String ^> ^args)
 	{
 		if(opDefaultPath.getValueCount() > 1)
 		{
-			ErrorExit(I18N(String::Format(L"{0} default path specified. Only one acceptable.", 
+			ErrorExit(I18N(String::Format(L"{0} default paths specified. Only one acceptable.", 
 				opDefaultPath.getValueCount())));
 		}
 		if(!IsFullPathNamble(opDefaultPath.getValueStrings().c_str()))
@@ -168,7 +183,7 @@ int main(array<System::String ^> ^args)
 	{
 		if(opCreator.getValueCount() > 1)
 		{
-			ErrorExit(I18N(String::Format(L"{0} default path specified. Only one acceptable.", 
+			ErrorExit(I18N(String::Format(L"{0} creators path specified. Only one acceptable.", 
 				opCreator.getValueCount())));
 		}
 		if(!IsFileNamble(opCreator.getValueStrings().c_str()))
@@ -188,7 +203,7 @@ int main(array<System::String ^> ^args)
 	{
 		if(opAppName.getValueCount() > 1)
 		{
-			ErrorExit(I18N(String::Format(L"{0} default path specified. Only one acceptable.", 
+			ErrorExit(I18N(String::Format(L"{0} appnames specified. Only one acceptable.", 
 				opAppName.getValueCount())));
 		}
 		if(!IsFileNamble(opAppName.getValueStrings().c_str()))
@@ -201,6 +216,57 @@ int main(array<System::String ^> ^args)
 	if(String::IsNullOrEmpty(Settings::AppName))
 	{
 		ErrorExit(I18N(L"AppName not specified."));
+	}
+
+
+	// section
+	if(opSection.hadOption())
+	{
+		if(opSection.getValueCount() > 1)
+		{
+			ErrorExit(I18N(String::Format(L"{0} appnames specified. Only one acceptable.", 
+				opSection.getValueCount())));
+		}
+		Settings::Section = gcnew String(opSection.getValueStrings().c_str());
+	}
+	if(String::IsNullOrEmpty(Settings::Section))
+	{
+		Settings::Section = L"FolderConfig";
+	}
+
+
+	// check unknown option
+	if(parser.hadUnknownOption())
+	{
+		StringBuilder sb;
+		sb.AppendLine(I18N(L"Unknown option:"));
+		sb.AppendLine(gcnew String(parser.getUnknowOptionStrings().c_str()));
+		ErrorExit(sb.ToString());
+	}
+
+	return true;
+}
+
+
+[STAThreadAttribute]
+int main(array<System::String ^> ^args)
+{
+	try
+	{
+		if (!Settings::initDefault())
+		{
+			throw gcnew Exception(I18N(L"Failed to load folderconfig.ini"));
+		}
+		if(!parseOption())
+			return 2;
+	}
+	catch(Exception^ ex)
+	{
+		MessageBox::Show(ex->Message,
+			Application::ProductName,
+			MessageBoxButtons::OK,
+			MessageBoxIcon::Error);
+		return 2;
 	}
 
 
@@ -224,6 +290,7 @@ int main(array<System::String ^> ^args)
 				System::Windows::Forms::MessageBoxButtons::OK,
 				System::Windows::Forms::MessageBoxIcon::Error);
 
+			return 1;
 		}
 		return 0;
 	}

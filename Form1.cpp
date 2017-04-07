@@ -5,76 +5,20 @@
 namespace Ambiesoft { namespace FolderConfig {
 	System::Void Form1::Form1_Load(System::Object^  sender, System::EventArgs^  e) 
 	{
-		// bool isForSes=false;
-		//array<System::String ^> ^args = System::Environment::GetCommandLineArgs();
-		//if(args && args->Length > 1)
-		//{
-		//	for(int i=1 ; i<args->Length; ++i)
-		//	{
-		//		String^ arg = args[i];
-		//		if(arg=="/sm")
-		//		{
-		//			isForSes=true;
-		//			btnReverToDefault->Visible = true;
-		//		}
-		//		else
-		//		{
-		//			MessageBox::Show((L"Unknown Option") + L": " + arg,
-		//				Application::ProductName,
-		//				MessageBoxButtons::OK,
-		//				MessageBoxIcon::Error);
-		//			Close();
-		//			return;
-		//		}
-		//	}
-		//}
-
-		APP_KEYNAME_FOLDER = L"Folder";
-		//if(isForSes)
-		//{
-		//	APP_KEYNAME_FOLDER = L"SessionFolder";
-		//	Text=Text + L" - SessionManager";
-		//}
-
+		assert(!String::IsNullOrEmpty(Settings::Section));
 		try
 		{
 			int pathtype = 0;
-			Profile::GetInt(APP_KEYNAME_FOLDER, "PathType", -1, pathtype, Settings::iniFileName);
+			Profile::GetInt(Settings::Section, "PathType", -1, pathtype, Settings::iniFileName);
 			if(pathtype==-1)
 			{
 				pathtype=0;
 			}
 
-			//if(!isForSes)
-			//{
-			//	if(pathtype==-1)
-			//	{
-			//		pathtype=0;
-			//	}
-			//}
-			//else
-			//{
-			//	if(pathtype==-1)
-			//	{ // SessionFolder has no entry
-			//		Profile::GetInt(L"Folder", "PathType", 0, pathtype, inipath);
-			//	}
-			//}
-
-
-
-
 			String^ uspath;
-			if(Profile::GetString(APP_KEYNAME_FOLDER, "UserDefinedPath", String::Empty, uspath, Settings::iniFileName))
+			if(Profile::GetString(Settings::Section, "folder", String::Empty, uspath, Settings::iniFileName))
 				folbrow->SelectedPath = uspath;
 
-			//if(isForSes)
-			//{
-			//	if(String::IsNullOrEmpty(uspath))
-			//	{
-			//		Profile::GetString(L"Folder", "UserDefinedPath", String::Empty, uspath, inipath);
-			//	}
-			//}
-			//			String^ path;
 			switch(pathtype)
 			{
 			case 0: 
@@ -222,9 +166,9 @@ namespace Ambiesoft { namespace FolderConfig {
 			{
 				bool failed = false;
 
-				failed |= !Profile::WriteInt(APP_KEYNAME_FOLDER, "PathType", curc_, Settings::iniFileName);
+				failed |= !Profile::WriteInt(Settings::Section, "PathType", curc_, Settings::iniFileName);
 				if(curc_==3)
-					failed |= !Profile::WriteString(APP_KEYNAME_FOLDER, "UserDefinedPath", textFolder->Text, Settings::iniFileName);
+					failed |= !Profile::WriteString(Settings::Section, "folder", textFolder->Text, Settings::iniFileName);
 
 				ok = !failed;
 			}
@@ -251,8 +195,8 @@ namespace Ambiesoft { namespace FolderConfig {
 		{
 			bool failed = false;
 
-			failed |= !Profile::WriteString(APP_KEYNAME_FOLDER, "PathType", nullptr, Settings::iniFileName);
-			failed |= !Profile::WriteString(APP_KEYNAME_FOLDER, "UserDefinedPath", nullptr, Settings::iniFileName);
+			failed |= !Profile::WriteString(Settings::Section, "PathType", nullptr, Settings::iniFileName);
+			failed |= !Profile::WriteString(Settings::Section, "folder", nullptr, Settings::iniFileName);
 
 			ok = !failed;
 		}

@@ -58,7 +58,7 @@ namespace Ambiesoft { namespace FolderConfig {
 
 
 	private: int curc_;
-	private: String^ APP_KEYNAME_FOLDER;
+	//private: String^ APP_KEYNAME_FOLDER;
 	//literal String^ AMBIESOFTNAME = L"Ambiesoft";
 	//literal String^ DICREGATENAME = L"Dicregate";
 
