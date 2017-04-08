@@ -161,7 +161,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine=""
+				CommandLine="copy /Y $(SolutionDir)v2v4.exe.config $(TargetDir)$(TargetFileName).config"
 			/>
 		</Configuration>
 	</Configurations>
