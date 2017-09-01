@@ -198,19 +198,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\MyUtility\clrString.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\FolderConfig.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Form1.cpp"
+				RelativePath=".\FormMain.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Form1InitializeComponent.cpp"
+				RelativePath=".\FormMainInitializeComponent.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\MyUtility\IsFilenamable.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Settings.cpp"
 				>
 			</File>
 			<File
@@ -233,6 +241,10 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath="..\MyUtility\stdwin32\stdwin32.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="1 Header Files"
@@ -240,23 +252,28 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath="..\MyUtility\clrString.h"
+				>
+			</File>
+			<File
 				RelativePath="..\MyUtility\CommandLineParser.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Form1.h"
+				RelativePath=".\FormMain.h"
 				FileType="3"
 				>
-				<File
-					RelativePath=".\Form1.ja-JP.resx"
-					SubType="Designer"
-					>
-				</File>
-				<File
-					RelativePath=".\Form1.resX"
-					SubType="Designer"
-					>
-				</File>
+			<File
+                           RelativePath=".\FormMain.ja-JP.resx"
+                                       SubType="Designer"
+                                       >
+                               </File>
+                               <File
+                                      RelativePath=".\FormMain.resX"
+                                       SubType="Designer"
+                                       >
+                               </File>
+
 			</File>
 			<File
 				RelativePath="..\MyUtility\IsFilenamable.h"
@@ -274,6 +291,10 @@
 				RelativePath=".\stdafx.h"
 				>
 			</File>
+			<File
+				RelativePath="..\MyUtility\stdwin32\stdwin32.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="3 Resource Files"
@@ -288,6 +309,7 @@
 				RelativePath=".\app.rc"
 				>
 			</File>
+			
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"
