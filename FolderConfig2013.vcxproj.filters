@@ -13,11 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
-    <Filter Include="1 Header Files\MyUtility">
-      <UniqueIdentifier>{94a7001f-51b5-431b-93ff-c9692bd453a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2 Source Files\MyUtility">
+    <Filter Include="2 Source Files\lsMisc">
       <UniqueIdentifier>{7f1f740d-bed7-4c0f-b01c-22e7481b41f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1 Header Files\lsMisc">
+      <UniqueIdentifier>{94a7001f-51b5-431b-93ff-c9692bd453a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,19 +33,22 @@
     <ClCompile Include="Settings.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\MyUtility\clrString.cpp">
-      <Filter>2 Source Files\MyUtility</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MyUtility\IsFilenamable.cpp">
-      <Filter>2 Source Files\MyUtility</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MyUtility\stdwin32\stdwin32.cpp">
-      <Filter>2 Source Files\MyUtility</Filter>
-    </ClCompile>
     <ClCompile Include="FormMain.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FormMainInitializeComponent.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lsMisc\clrString.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lsMisc\IsFilenamable.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lsMisc\stdwin32\stdwin32.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lsMisc\browseFolder.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,19 +62,22 @@
     <ClInclude Include="stdafx.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\MyUtility\clrString.h">
-      <Filter>1 Header Files\MyUtility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MyUtility\CommandLineParser.h">
-      <Filter>1 Header Files\MyUtility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MyUtility\IsFilenamable.h">
-      <Filter>1 Header Files\MyUtility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MyUtility\stdwin32\stdwin32.h">
-      <Filter>1 Header Files\MyUtility</Filter>
-    </ClInclude>
     <ClInclude Include="FormMain.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lsMisc\clrString.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lsMisc\CommandLineParser.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lsMisc\IsFilenamable.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lsMisc\stdwin32\stdwin32.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lsMisc\browseFolder.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

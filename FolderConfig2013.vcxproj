@@ -22,7 +22,7 @@
     <PlatformToolset>v120_xp</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <CLRSupport>Pure</CLRSupport>
+    <CLRSupport>true</CLRSupport>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -30,7 +30,7 @@
     <PlatformToolset>v120_xp</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CLRSupport>Pure</CLRSupport>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -112,9 +112,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\MyUtility\clrString.cpp" />
-    <ClCompile Include="..\MyUtility\IsFilenamable.cpp" />
-    <ClCompile Include="..\MyUtility\stdwin32\stdwin32.cpp" />
+    <ClCompile Include="..\lsMisc\browseFolder.cpp" />
+    <ClCompile Include="..\lsMisc\clrString.cpp" />
+    <ClCompile Include="..\lsMisc\IsFilenamable.cpp" />
+    <ClCompile Include="..\lsMisc\stdwin32\stdwin32.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="FolderConfig.cpp" />
     <ClCompile Include="FormMain.cpp" />
@@ -126,10 +127,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MyUtility\clrString.h" />
-    <ClInclude Include="..\MyUtility\CommandLineParser.h" />
-    <ClInclude Include="..\MyUtility\IsFilenamable.h" />
-    <ClInclude Include="..\MyUtility\stdwin32\stdwin32.h" />
+    <ClInclude Include="..\lsMisc\browseFolder.h" />
+    <ClInclude Include="..\lsMisc\clrString.h" />
+    <ClInclude Include="..\lsMisc\CommandLineParser.h" />
+    <ClInclude Include="..\lsMisc\IsFilenamable.h" />
+    <ClInclude Include="..\lsMisc\stdwin32\stdwin32.h" />
     <ClInclude Include="FormMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>

@@ -9,8 +9,8 @@
 
 #include <Windows.h>
 
-#include "../MyUtility/DebugMacro.h"
-#include "../MyUtility/IsFilenamable.h"
-#include "../MyUtility/clrString.h"
+#include "../lsMisc/DebugMacro.h"
+#include "../lsMisc/IsFilenamable.h"
+#include "../lsMisc/clrString.h"
 
 #define I18N(t) t

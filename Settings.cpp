@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Settings.h"
 
-#include "../MyUtility/CommandLineParser.h"
-#include "../MyUtility/stdwin32/stdwin32.h"
+#include "../lsMisc/CommandLineParser.h"
+#include "../lsMisc/stdwin32/stdwin32.h"
 
 
 

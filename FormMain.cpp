@@ -2,6 +2,8 @@
 #include "FormMain.h"
 #include "Settings.h"
 
+#include "../lsMisc/BrowseFolder.h"
+
 namespace Ambiesoft { namespace FolderConfig {
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e) 
 	{
@@ -138,9 +140,14 @@ namespace Ambiesoft { namespace FolderConfig {
 
 	System::Void FormMain::btnBrowse_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
-		folbrow->SelectedPath = textFolder->Text;
-		if ( System::Windows::Forms::DialogResult::OK == folbrow->ShowDialog(this) )
-			textFolder->Text = folbrow->SelectedPath;
+		String^ folder = textFolder->Text;
+		if(!browseFolder(this, I18N(L"Select Folder"), folder))
+			return;
+
+		textFolder->Text = folder;
+		//folbrow->SelectedPath = textFolder->Text;
+		//if ( System::Windows::Forms::DialogResult::OK == folbrow->ShowDialog(this) )
+		//	textFolder->Text = folbrow->SelectedPath;
 	}
 
 

@@ -3,8 +3,8 @@
 
 #include "Settings.h"
 
-#include "../MyUtility/CommandLineParser.h"
-#include "../MyUtility/IsFileNamable.h"
+#include "../lsMisc/CommandLineParser.h"
+#include "../lsMisc/IsFileNamable.h"
 #pragma comment(lib, "Shell32.lib")
 
 
