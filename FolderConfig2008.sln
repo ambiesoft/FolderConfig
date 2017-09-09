@@ -6,13 +6,13 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
-		Ship|Win32 = Ship|Win32
+		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8}.Debug|Win32.ActiveCfg = Debug|Win32
 		{F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8}.Debug|Win32.Build.0 = Debug|Win32
-		{F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8}.Ship|Win32.ActiveCfg = Ship|Win32
-		{F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8}.Ship|Win32.Build.0 = Ship|Win32
+		{F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8}.Release|Win32.ActiveCfg = Release|Win32
+		{F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
