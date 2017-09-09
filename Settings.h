@@ -18,8 +18,8 @@ namespace Ambiesoft { namespace FolderConfig {
 		static String^ defaultUserPath_;
 		
 		literal String^ DefaultInifileName = L"folder.ini";
-		literal String^ DefaultCreator = L"me";
-		literal String^ DefaultAppName = L"MyApp";
+		//literal String^ DefaultCreator = L"me";
+		//literal String^ DefaultAppName = L"MyApp";
 
 		static bool initialized_;
 

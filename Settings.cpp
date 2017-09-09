@@ -17,19 +17,19 @@ namespace Ambiesoft {
 
 		String^ getHelpMessage()
 		{
-			return I18N(
-				"Usage:\r\n"
-				"FolderConfig.exe [/title title] /inifile inifile [/defaultpath defaultpath] /creator creator /appname appname [/section section]\r\n"
-				"\r\n"
-				"title: Title shown in Titlebar.\r\n"
-				// "inifile: filename user chosen data will be saved.\r\n"
-				"defaultpath: Default relative folder path from exe-resident folder,\r\n"
-				"\tThis folder is default location when no setting is available.\r\n"
-				"creator: Creator name used as subfolder of roaming or local folder.\r\n"
-				"appname: App name user as subfolder of creator."
-				"section: Section name of config"
-				);
+			StringBuilder sb;
+			sb.AppendLine(I18N(L"Usage:"));
+			sb.AppendLine(L"FolderConfig.exe [/title Title] [/inifile Inifile] [/defaultpath Defaultpath] /creator Creator /appname Appname [/section Section]");
+			sb.AppendLine();
 
+			sb.AppendLine(I18N(L"Title: Title shown in Titlebar."));
+			sb.AppendLine(I18N(L"Inifile: filename user chosen data will be saved. (Default is folder.ini)"));
+			sb.AppendLine(I18N(L"Defaultpath: Default relative folder path from exe-resident folder. (Default is Exe-resident folder)"));
+			sb.AppendLine(I18N(L"Creator: Creator name used as subfolder of roaming or local folder."));
+			sb.AppendLine(I18N(L"Appname: App name used as subfolder of Creator."));
+			sb.AppendLine(I18N(L"Section: Section name of config. (Default is FolderConfig)"));
+
+			return sb.ToString();
 		}
 
 		void ErrorExit(String^ s)
@@ -41,11 +41,20 @@ namespace Ambiesoft {
 
 			System::Environment::Exit(1);
 		}
-
-
+		void Alert(String^ msg)
+		{
+			MessageBox::Show(msg,
+				Application::ProductName,
+				MessageBoxButtons::OK,
+				MessageBoxIcon::Warning);
+		}
+		void Alert(Exception^ ex)
+		{
+			Alert(ex->Message);
+		}
 		bool Settings::init()
 		{
-			CCommandLineParser parser;
+			CCommandLineParser parser(CaseFlag_CaseInsensitive);
 			COption opTitle(L"/title", 1);
 			parser.AddOption(&opTitle);
 
@@ -64,11 +73,43 @@ namespace Ambiesoft {
 			COption opSection(L"/section", 1);
 			parser.AddOption(&opSection);
 
+			COption opCulture(L"/culture", 1);
+			parser.AddOption(&opCulture);
+
 			COption opHelp(L"/h", L"/?");
 			parser.AddOption(&opHelp);
 
 
 			parser.Parse();
+
+
+			// First, set culture for I18N
+			if(opCulture.hadOption())
+			{
+				if(opCulture.getValueCount() > 1)
+				{
+					ErrorExit(I18N(String::Format(L"{0} cultures specified. Only one acceptable.",
+						opSection.getValueCount())));
+				}
+				String^ cultureName = gcnew String(opCulture.getFirstValue().c_str());
+
+				try
+				{
+					System::Globalization::CultureInfo^ ci = gcnew System::Globalization::CultureInfo(cultureName);
+					System::Threading::Thread::CurrentThread->CurrentCulture = ci;
+					System::Threading::Thread::CurrentThread->CurrentUICulture = ci;
+				}
+				catch(Exception^ ex)
+				{
+					Alert(ex);
+				}
+			}
+
+			HashIni^ ini = Profile::ReadAll(Path::Combine(Path::GetDirectoryName(Application::ExecutablePath),
+				Application::ProductName+L".ini"));
+			
+			Profile::GetString("Option", "appname", nullptr, appName_, ini);
+			Profile::GetString("Option", "creator", nullptr, creator_, ini);
 
 			if(opHelp.hadOption())
 			{
@@ -151,14 +192,14 @@ namespace Ambiesoft {
 				}
 				Settings::creator_ = gcnew String(opCreator.getValueStrings().c_str());
 			}
-			else
-			{
-				Settings::creator_ = Settings::DefaultCreator;
-			}
+			//else
+			//{
+			//	Settings::creator_ = Settings::DefaultCreator;
+			//}
 
 			if (String::IsNullOrEmpty(Settings::Creator))
 			{
-				ErrorExit(I18N(L"Creator not specified."));
+				ErrorExit(I18N(L"Creator must be specified."));
 			}
 
 
@@ -177,13 +218,13 @@ namespace Ambiesoft {
 				}
 				Settings::appName_ = gcnew String(opAppName.getValueStrings().c_str());
 			}
-			else
-			{
-				Settings::appName_ = Settings::DefaultAppName;
-			}
+			//else
+			//{
+			//	Settings::appName_ = Settings::DefaultAppName;
+			//}
 			if (String::IsNullOrEmpty(Settings::AppName))
 			{
-				ErrorExit(I18N(L"AppName not specified."));
+				ErrorExit(I18N(L"Appname must be specified."));
 			}
 
 
@@ -201,6 +242,7 @@ namespace Ambiesoft {
 			{
 				Settings::section_ = L"FolderConfig";
 			}
+
 
 
 			// check unknown option
@@ -234,6 +276,6 @@ namespace Ambiesoft {
 
 			return defaultUserPath_;
 		}
-		
+
 	}
 }

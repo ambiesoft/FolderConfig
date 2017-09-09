@@ -49,11 +49,13 @@
     <ReferencePath>C:\Linkout\DNAssembly;$(ReferencePath)</ReferencePath>
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(Configuration)\$(VisualStudioEdition)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ReferencePath>C:\Linkout\DNAssembly;$(ReferencePath)</ReferencePath>
     <OutDir>..\..\..\..\..\Linkout\FolderConfig\</OutDir>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+    <IntDir>$(Configuration)\$(VisualStudioEdition)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

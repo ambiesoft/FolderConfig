@@ -94,11 +94,11 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="..\..\..\..\..\Linkout\FolderConfig\"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
-			ManagedExtensions="2"
+			ManagedExtensions="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
