@@ -39,26 +39,26 @@
     <ClCompile Include="FormMainInitializeComponent.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\IsFilenamable.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lsMisc\stdwin32\stdwin32.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\lsMisc\browseFolder.cpp">
-      <Filter>2 Source Files</Filter>
+      <Filter>2 Source Files\lsMisc</Filter>
     </ClCompile>
     <ClCompile Include="..\lsMisc\cppclr\clrString.cpp">
-      <Filter>2 Source Files</Filter>
+      <Filter>2 Source Files\lsMisc</Filter>
     </ClCompile>
     <ClCompile Include="..\lsMisc\CommandLineParser.cpp">
-      <Filter>2 Source Files</Filter>
+      <Filter>2 Source Files\lsMisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lsMisc\IsFilenamable.cpp">
+      <Filter>2 Source Files\lsMisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lsMisc\stdwin32\stdwin32.cpp">
+      <Filter>2 Source Files\lsMisc</Filter>
     </ClCompile>
     <ClCompile Include="..\lsMisc\UrlEncode.cpp">
-      <Filter>2 Source Files</Filter>
+      <Filter>2 Source Files\lsMisc</Filter>
     </ClCompile>
     <ClCompile Include="..\lsMisc\UTF16toUTF8.cpp">
-      <Filter>2 Source Files</Filter>
+      <Filter>2 Source Files\lsMisc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
