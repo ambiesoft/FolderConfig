@@ -9,15 +9,20 @@ namespace Ambiesoft { namespace FolderConfig {
 
 	ref class Settings abstract sealed
 	{
+	public:
+		literal String^ SEC_OPTION				= L"Option";
 	private:
 		static String^ title_;
 		// static String^ iniFileName_;
 		static String^ creator_;
 		static String^ appName_;
 		static String^ section_;
+				
+		static int defaultSelection_;
 		static String^ defaultUserPath_;
-		
-		literal String^ DefaultInifileName = L"folder.ini";
+
+
+		literal String^ userInifileName_ = L"folder.ini";
 		//literal String^ DefaultCreator = L"me";
 		//literal String^ DefaultAppName = L"MyApp";
 
@@ -30,10 +35,10 @@ namespace Ambiesoft { namespace FolderConfig {
 		{
 			String^ get()
 			{
-				if (String::IsNullOrEmpty(title_))
-				{
-					return System::Windows::Forms::Application::ProductName;
-				}
+				//if (String::IsNullOrEmpty(title_))
+				//{
+				//	return System::Windows::Forms::Application::ProductName;
+				//}
 				return title_;
 			}
 		}
@@ -41,9 +46,19 @@ namespace Ambiesoft { namespace FolderConfig {
 		{
 			String^ get() { return section_; }
 		}
-		static property String^ InifileName
+		static property String^ ThisDir
 		{
-			String^ get() { return DefaultInifileName; }
+			String^ get()
+			{
+				return System::IO::Path::GetDirectoryName(System::Windows::Forms::Application::ExecutablePath);
+			}
+		}
+		static property String^ UserIniFullpath
+		{
+			String^ get() 
+			{
+				return System::IO::Path::Combine(ThisDir, userInifileName_); 
+			}
 		}
 		static property String^ Creator
 		{
@@ -54,7 +69,10 @@ namespace Ambiesoft { namespace FolderConfig {
 			String^ get() { return appName_; }
 		}
 
-		
+		static property int DefaultSelection
+		{
+			int get() { return defaultSelection_; }
+		}
 		static property String^ DefaultUserPath
 		{
 			String^ get();

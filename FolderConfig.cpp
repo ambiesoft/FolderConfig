@@ -80,36 +80,21 @@ ref struct PowWrite
 
 
 enum ErrorReturnValue {
-	ErrorReturn_SettingsInitFailed = 1,
+	ErrorReturn_NoError = 0,
+	ErrorReturn_SettingsInitFailed ,
 	ErrorReturn_ParseFailed,
+	ErrorReturn_RunAsFailed,
 };
 
 [STAThreadAttribute]
 int main(array<System::String ^> ^args)
 {
-	//try
-	//{
-	//	if (!Settings::initDefault())
-	//	{
-	//		throw gcnew Exception(I18N(L"Failed to load folderconfig.ini"));
-	//	}
-	//	if(!parseOption())
-	//		return 2;
-	//}
-	//catch(Exception^ ex)
-	//{
-	//	MessageBox::Show(ex->Message,
-	//		Application::ProductName,
-	//		MessageBoxButtons::OK,
-	//		MessageBoxIcon::Error);
-	//	return 2;
-	//}
-
 	if (!Settings::init())
 		return ErrorReturn_SettingsInitFailed;
 
-	if(!PowWrite::IsAdmin() && !PowWrite::do_c_write(Settings::InifileName))
+	if(!PowWrite::IsAdmin() && !PowWrite::do_c_write(Settings::UserIniFullpath))
 	{
+		// could not write to inifile, launch me in higher priviledge
 		System::Diagnostics::ProcessStartInfo psi;
 		psi.UseShellExecute=true;
 		psi.WorkingDirectory = System::Environment::CurrentDirectory;
@@ -128,9 +113,9 @@ int main(array<System::String ^> ^args)
 				System::Windows::Forms::MessageBoxButtons::OK,
 				System::Windows::Forms::MessageBoxIcon::Error);
 
-			return 1;
+			return ErrorReturn_RunAsFailed;
 		}
-		return 0;
+		return ErrorReturn_NoError;
 	}
 
 
@@ -141,5 +126,5 @@ int main(array<System::String ^> ^args)
 
 	dlg.ShowDialog();
 
-	return 0;
+	return ErrorReturn_NoError;
 }

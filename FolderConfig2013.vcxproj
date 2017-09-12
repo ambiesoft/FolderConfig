@@ -47,9 +47,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ReferencePath>C:\Linkout\DNAssembly;$(ReferencePath)</ReferencePath>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)$(Configuration)\2013\</OutDir>
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>$(Configuration)\$(VisualStudioEdition)\</IntDir>
+    <IntDir>$(Configuration)\2013\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ReferencePath>C:\Linkout\DNAssembly;$(ReferencePath)</ReferencePath>
@@ -65,6 +65,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../lsMisc/stlsoft/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -75,11 +76,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../lsMisc/stlsoft/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>
@@ -114,9 +115,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\lsMisc\browseFolder.cpp" />
-    <ClCompile Include="..\lsMisc\clrString.cpp" />
+    <ClCompile Include="..\lsMisc\CommandLineParser.cpp" />
+    <ClCompile Include="..\lsMisc\cppclr\clrString.cpp" />
     <ClCompile Include="..\lsMisc\IsFilenamable.cpp" />
     <ClCompile Include="..\lsMisc\stdwin32\stdwin32.cpp" />
+    <ClCompile Include="..\lsMisc\UrlEncode.cpp" />
+    <ClCompile Include="..\lsMisc\UTF16toUTF8.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="FolderConfig.cpp" />
     <ClCompile Include="FormMain.cpp" />
@@ -129,14 +133,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lsMisc\browseFolder.h" />
-    <ClInclude Include="..\lsMisc\clrString.h" />
     <ClInclude Include="..\lsMisc\CommandLineParser.h" />
+    <ClInclude Include="..\lsMisc\cppclr\clrString.h" />
     <ClInclude Include="..\lsMisc\IsFilenamable.h" />
     <ClInclude Include="..\lsMisc\stdwin32\stdwin32.h" />
+    <ClInclude Include="..\lsMisc\UrlEncode.h" />
+    <ClInclude Include="..\lsMisc\UTF16toUTF8.h" />
+    <ClInclude Include="debugflags.h" />
     <ClInclude Include="FormMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ResUtil.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
@@ -150,6 +158,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FolderConfigStrings.ja-JP.resX" />
+    <EmbeddedResource Include="FolderConfigStrings.resX" />
     <EmbeddedResource Include="FormMain.ja-JP.resx">
       <DependentUpon>FormMain.h</DependentUpon>
       <SubType>Designer</SubType>

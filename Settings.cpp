@@ -19,15 +19,18 @@ namespace Ambiesoft {
 		{
 			StringBuilder sb;
 			sb.AppendLine(I18N(L"Usage:"));
-			sb.AppendLine(L"FolderConfig.exe [/title Title] [/inifile Inifile] [/defaultpath Defaultpath] /creator Creator /appname Appname [/section Section]");
+			sb.AppendLine(L"FolderConfig.exe [/title Title] [/inifile Inifile] [/defaultselection Defaultselection] [/defaultpath Defaultpath] /creator Creator /appname Appname [/section Section] [/culture Culture]");
 			sb.AppendLine();
 
 			sb.AppendLine(I18N(L"Title: Title shown in Titlebar."));
 			sb.AppendLine(I18N(L"Inifile: filename user chosen data will be saved. (Default is folder.ini)"));
+
+			sb.AppendLine(I18N(L"Defaultselection: 0,1,2 or 3. (Default is 0)"));
 			sb.AppendLine(I18N(L"Defaultpath: Default relative folder path from exe-resident folder. (Default is Exe-resident folder)"));
 			sb.AppendLine(I18N(L"Creator: Creator name used as subfolder of roaming or local folder."));
 			sb.AppendLine(I18N(L"Appname: App name used as subfolder of Creator."));
 			sb.AppendLine(I18N(L"Section: Section name of config. (Default is FolderConfig)"));
+			sb.AppendLine(I18N(L"Culture: Culture string, (ex) \"ja-JP\"."));
 
 			return sb.ToString();
 		}
@@ -82,20 +85,43 @@ namespace Ambiesoft {
 
 			parser.Parse();
 
+			String^ culture;
+
+			String^ inipath = Path::Combine(Path::GetDirectoryName(Application::ExecutablePath),
+				Application::ProductName+L".ini");
+			HashIni^ ini = Profile::ReadAll(inipath);
+			
+			Profile::GetString(SEC_OPTION, "title", nullptr, title_, ini);
+			Profile::GetString(SEC_OPTION, "appname", nullptr, appName_, ini);
+			Profile::GetString(SEC_OPTION, "creator", nullptr, creator_, ini);
+			Profile::GetInt(SEC_OPTION, "defaultselection", -1, defaultSelection_, ini);
+			Profile::GetString(SEC_OPTION, "defaultpath", nullptr, defaultUserPath_, ini);
+			Profile::GetString(SEC_OPTION, "culture", nullptr, culture, ini);
+#ifdef _DEBUG
+			if(!String::IsNullOrEmpty(title_))
+				System::Diagnostics::Debug::Print(L"title is \"{0}\" (from \"{1}\")",title_,inipath);
+			if(!String::IsNullOrEmpty(appName_))
+				System::Diagnostics::Debug::Print(L"Appname is \"{0}\" (from \"{1}\")",appName_,inipath);
+			if(!String::IsNullOrEmpty(creator_))
+				System::Diagnostics::Debug::Print(L"Creator is \"{0}\" (from \"{1}\")",creator_,inipath);
+			if(defaultSelection_ >=0)
+				System::Diagnostics::Debug::Print(L"defaultselection is \"{0}\" (from \"{1}\")",defaultSelection_,inipath);
+			if(!String::IsNullOrEmpty(defaultUserPath_))
+				System::Diagnostics::Debug::Print(L"defaultpath is \"{0}\" (from \"{1}\")",defaultUserPath_,inipath);
+			if(!String::IsNullOrEmpty(culture))
+				System::Diagnostics::Debug::Print(L"culture is \"{0}\" (from \"{1}\")",culture,inipath);
+#endif
 
 			// First, set culture for I18N
 			if(opCulture.hadOption())
 			{
-				if(opCulture.getValueCount() > 1)
-				{
-					ErrorExit(I18N(String::Format(L"{0} cultures specified. Only one acceptable.",
-						opSection.getValueCount())));
-				}
-				String^ cultureName = gcnew String(opCulture.getFirstValue().c_str());
-
+				culture = gcnew String(opCulture.getFirstValue().c_str());
+			}
+			if(!String::IsNullOrEmpty(culture))
+			{
 				try
 				{
-					System::Globalization::CultureInfo^ ci = gcnew System::Globalization::CultureInfo(cultureName);
+					System::Globalization::CultureInfo^ ci = gcnew System::Globalization::CultureInfo(culture);
 					System::Threading::Thread::CurrentThread->CurrentCulture = ci;
 					System::Threading::Thread::CurrentThread->CurrentUICulture = ci;
 				}
@@ -105,11 +131,6 @@ namespace Ambiesoft {
 				}
 			}
 
-			HashIni^ ini = Profile::ReadAll(Path::Combine(Path::GetDirectoryName(Application::ExecutablePath),
-				Application::ProductName+L".ini"));
-			
-			Profile::GetString("Option", "appname", nullptr, appName_, ini);
-			Profile::GetString("Option", "creator", nullptr, creator_, ini);
 
 			if(opHelp.hadOption())
 			{
@@ -125,8 +146,6 @@ namespace Ambiesoft {
 			{
 				Settings::title_ = gcnew String(opTitle.getValueStrings().c_str());
 			}
-			if (String::IsNullOrEmpty(Settings::title_))
-				Settings::title_ = Application::ProductName;
 
 			// save file
 			//if (opIniFile.hadOption())
@@ -167,14 +186,21 @@ namespace Ambiesoft {
 					ErrorExit(I18N(String::Format(L"{0} default paths specified. Only one acceptable.",
 						opDefaultPath.getValueCount())));
 				}
-				if (!IsFileNamble(opDefaultPath.getValueStrings().c_str()))
+				if (!IsRelativePathNamble(opDefaultPath.getValueStrings().c_str()))
 				{
 					ErrorExit(I18N(String::Format(L"{0} must not include {1}.",
-						"defaultpath", GetFileInamableCharsCLR())));
+						"defaultpath", toCLR(GetRelativePathInamableChars()))));
 				}
-				Settings::defaultUserPath_ = gcnew String(opDefaultPath.getValueStrings().c_str());
+				defaultUserPath_ = gcnew String(opDefaultPath.getValueStrings().c_str());
 			}
-			// default path is nullable
+			if(!String::IsNullOrEmpty(defaultUserPath_))
+			{
+				// must be relative path
+				if(!PathIsRelative(toLPCW(defaultUserPath_)))
+				{
+					ErrorExit(I18N(L"Defaultpath must be a relative path."));
+				}
+			}
 
 
 			// creator

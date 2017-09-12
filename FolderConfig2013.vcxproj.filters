@@ -39,9 +39,6 @@
     <ClCompile Include="FormMainInitializeComponent.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\clrString.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\lsMisc\IsFilenamable.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
@@ -49,6 +46,18 @@
       <Filter>2 Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\lsMisc\browseFolder.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lsMisc\cppclr\clrString.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lsMisc\CommandLineParser.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lsMisc\UrlEncode.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lsMisc\UTF16toUTF8.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,9 +74,6 @@
     <ClInclude Include="FormMain.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lsMisc\clrString.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\lsMisc\CommandLineParser.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
@@ -78,6 +84,21 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lsMisc\browseFolder.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lsMisc\cppclr\clrString.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lsMisc\UrlEncode.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lsMisc\UTF16toUTF8.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResUtil.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="debugflags.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -99,6 +120,12 @@
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resX">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FolderConfigStrings.ja-JP.resX">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FolderConfigStrings.resX">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

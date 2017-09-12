@@ -13,6 +13,9 @@ namespace Ambiesoft { namespace FolderConfig {
 	public ref class FormMain : public System::Windows::Forms::Form
 	{
 	public:
+		literal String^ KEY_PATH_TYPE				= L"PathType";
+		literal String^ KEY_FOLDER					= L"folder";
+	public:
 		FormMain(void)
 		{
 			InitializeComponent();
@@ -45,7 +48,7 @@ namespace Ambiesoft { namespace FolderConfig {
 	private: System::Windows::Forms::Button^  btnBrowse;
 	private: System::Windows::Forms::Label^  labelAttention;
 	private: System::Windows::Forms::FolderBrowserDialog^  folbrow;
-	private: System::Windows::Forms::Label^  lblLiteralOKMessage;
+
 	private: System::Windows::Forms::Button^  btnReverToDefault;
 
 

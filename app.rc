@@ -26,7 +26,7 @@ LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-1                       ICON                    "app.ico"
+1                       ICON                    "icon.ico"
 
 
 #ifdef APSTUDIO_INVOKED

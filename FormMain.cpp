@@ -5,20 +5,27 @@
 #include "../lsMisc/BrowseFolder.h"
 
 namespace Ambiesoft { namespace FolderConfig {
+	
+	//String^ FormMain::getI18NString(String^ sIn)
+	//{
+	//	String^ ret = theResource_->GetString(sIn);
+	//	return String::IsNullOrEmpty(ret) ? sIn : ret;
+	//}
+
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e) 
 	{
 		assert(!String::IsNullOrEmpty(Settings::Section));
 		try
 		{
 			int pathtype = 0;
-			Profile::GetInt(Settings::Section, "PathType", -1, pathtype, Settings::InifileName);
+			Profile::GetInt(Settings::Section, KEY_PATH_TYPE, -1, pathtype, Settings::UserIniFullpath);
 			if(pathtype==-1)
 			{
 				pathtype=0;
 			}
 
 			String^ uspath;
-			if (Profile::GetString(Settings::Section, "folder", String::Empty, uspath, Settings::InifileName))
+			if (Profile::GetString(Settings::Section, KEY_FOLDER, String::Empty, uspath, Settings::UserIniFullpath))
 				folbrow->SelectedPath = uspath;
 
 			switch(pathtype)
@@ -43,9 +50,10 @@ namespace Ambiesoft { namespace FolderConfig {
 					radioUserDefine->Checked = true;
 				}
 				break;
-			default:throw gcnew Exception(String::Format(L"{0} has wrong value.", Settings::InifileName));
+			default:
+				throw gcnew Exception(String::Format(L"{0} has wrong value.", Settings::UserIniFullpath));
 			}
-			//			textFolder->Text = path;
+
 		}
 		catch(Exception^ e)
 		{
@@ -53,7 +61,10 @@ namespace Ambiesoft { namespace FolderConfig {
 			radioUnderThis->Checked = true;
 		}
 
-		this->Text = String::IsNullOrEmpty(Settings::Title) ? Application::ProductName : Settings::Title;
+
+		this->Text = String::IsNullOrEmpty(Settings::Title) ? 
+			Application::ProductName + L" | " + Settings::AppName :
+		Settings::Title;
 	}
 
 
@@ -75,7 +86,6 @@ namespace Ambiesoft { namespace FolderConfig {
 					path = di->FullName;
 					if(!String::IsNullOrEmpty(Settings::DefaultUserPath))
 						path = System::IO::Path::Combine(path, Settings::DefaultUserPath);
-					// labelAttention->Text = String::Empty;
 					labelAttention->Visible = false;
 				}
 				break;
@@ -84,7 +94,6 @@ namespace Ambiesoft { namespace FolderConfig {
 					path = System::Environment::GetFolderPath(System::Environment::SpecialFolder::LocalApplicationData);
 					path = System::IO::Path::Combine(path, Settings::Creator);
 					path = System::IO::Path::Combine(path, Settings::AppName);
-					// labelAttention->Text = L"username will be replaced by actual username.";
 					labelAttention->Visible = true;
 				}
 				break;
@@ -93,14 +102,12 @@ namespace Ambiesoft { namespace FolderConfig {
 					path = System::Environment::GetFolderPath(System::Environment::SpecialFolder::ApplicationData);
 					path = System::IO::Path::Combine(path, Settings::Creator);
 					path = System::IO::Path::Combine(path, Settings::AppName);
-					// labelAttention->Text = L"username will be replaced by actual username.";
 					labelAttention->Visible = true;
 				}
 				break;
 			case 3: 
 				{
 					path = folbrow->SelectedPath;
-					// labelAttention->Text = String::Empty;
 					labelAttention->Visible = false;
 				}
 				break;
@@ -129,8 +136,10 @@ namespace Ambiesoft { namespace FolderConfig {
 				curc_ = 1;
 			else if ( rb == radioRoaming )
 				curc_ = 2;
-			else
+			else if( rb == radioUserDefine)
 				curc_ = 3;
+			else
+				DASSERT(false);
 
 			checkedCommon(curc_);
 		}
@@ -145,9 +154,6 @@ namespace Ambiesoft { namespace FolderConfig {
 			return;
 
 		textFolder->Text = folder;
-		//folbrow->SelectedPath = textFolder->Text;
-		//if ( System::Windows::Forms::DialogResult::OK == folbrow->ShowDialog(this) )
-		//	textFolder->Text = folbrow->SelectedPath;
 	}
 
 
@@ -171,9 +177,9 @@ namespace Ambiesoft { namespace FolderConfig {
 			{
 				bool failed = false;
 
-				failed |= !Profile::WriteInt(Settings::Section, "PathType", curc_, Settings::InifileName);
+				failed |= !Profile::WriteInt(Settings::Section, KEY_PATH_TYPE, curc_, Settings::UserIniFullpath);
 				if(curc_==3)
-					failed |= !Profile::WriteString(Settings::Section, "folder", textFolder->Text, Settings::InifileName);
+					failed |= !Profile::WriteString(Settings::Section, KEY_FOLDER, textFolder->Text, Settings::UserIniFullpath);
 
 				ok = !failed;
 			}
@@ -183,11 +189,19 @@ namespace Ambiesoft { namespace FolderConfig {
 
 			if ( !ok )
 			{
-				MessageBox::Show(this, L"Failed to save settings.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show(this,
+					I18N(ResUtil::RES_FOLDER_SETTINGS_SAVEFAILED), 
+					Application::ProductName,
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Error);
 			}
 			else
 			{
-				MessageBox::Show(this, lblLiteralOKMessage->Text, Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Information);
+				MessageBox::Show(this,
+					I18N(ResUtil::RES_FOLDER_SETTINGS_SAVED),
+					Application::ProductName,
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
 			}
 		}
 	}
@@ -200,8 +214,8 @@ namespace Ambiesoft { namespace FolderConfig {
 		{
 			bool failed = false;
 
-			failed |= !Profile::WriteString(Settings::Section, "PathType", nullptr, Settings::InifileName);
-			failed |= !Profile::WriteString(Settings::Section, "folder", nullptr, Settings::InifileName);
+			failed |= !Profile::WriteString(Settings::Section, KEY_PATH_TYPE, nullptr, Settings::UserIniFullpath);
+			failed |= !Profile::WriteString(Settings::Section, KEY_FOLDER, nullptr, Settings::UserIniFullpath);
 
 			ok = !failed;
 		}
@@ -211,11 +225,19 @@ namespace Ambiesoft { namespace FolderConfig {
 
 		if ( !ok )
 		{
-			MessageBox::Show(this, L"Failed to save settings.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+			MessageBox::Show(this, 
+				I18N(ResUtil:: RES_FOLDER_SETTINGS_SAVEFAILED),
+				Application::ProductName,
+				MessageBoxButtons::OK,
+				MessageBoxIcon::Error);
 		}
 		else
 		{
-			MessageBox::Show(this, lblLiteralOKMessage->Text, Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Information);
+			MessageBox::Show(this,
+				I18N(ResUtil:: RES_FOLDER_SETTINGS_SAVED),
+				Application::ProductName,
+				MessageBoxButtons::OK,
+				MessageBoxIcon::Information);
 		}		 
 		Close();
 	}

@@ -1,5 +1,7 @@
-[default]
-title=MyApplication
-inifile=folder.ini
-creator=watashi
-appname=ambbbbb
+[Option]
+appname=MyApp
+
+creator=Ambiesoft
+defaultselection=0
+defaultpath=conf
+culture=ja-JP
