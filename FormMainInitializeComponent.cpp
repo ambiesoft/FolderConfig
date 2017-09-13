@@ -126,10 +126,10 @@ namespace Ambiesoft { namespace FolderConfig {
 		this->Controls->Add(this->label2);
 		this->Controls->Add(this->btnCancel);
 		this->Controls->Add(this->btnOK);
+		this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 		this->MaximizeBox = false;
 		this->MinimizeBox = false;
 		this->Name = L"FormMain";
-		this->SizeGripStyle = System::Windows::Forms::SizeGripStyle::Show;
 		this->Load += gcnew System::EventHandler(this, &FormMain::FormMain_Load);
 		this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &FormMain::FormMain_FormClosing);
 		this->groupBox1->ResumeLayout(false);

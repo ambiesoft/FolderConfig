@@ -343,10 +343,12 @@
 			</File>
 			<File
 				RelativePath=".\FolderConfigStrings.ja-JP.resX"
+				SubType="Designer"
 				>
 			</File>
 			<File
 				RelativePath=".\FolderConfigStrings.resX"
+				SubType="Designer"
 				>
 			</File>
 			<File
