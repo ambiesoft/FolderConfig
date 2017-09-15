@@ -33,6 +33,7 @@ namespace Ambiesoft { namespace FolderConfig {
 	{
 	public:
 		literal String^ SEC_OPTION				= L"Option";
+		literal String^ ProductName				= L"FolderConfig";
 	private:
 		static String^ title_;
 		// static String^ iniFileName_;
@@ -59,7 +60,7 @@ namespace Ambiesoft { namespace FolderConfig {
 			{
 				//if (String::IsNullOrEmpty(title_))
 				//{
-				//	return System::Windows::Forms::Application::ProductName;
+				//	return System::Windows::Forms::ProductName;
 				//}
 				return title_;
 			}

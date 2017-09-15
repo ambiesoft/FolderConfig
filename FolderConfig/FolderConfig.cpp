@@ -26,8 +26,8 @@
 
 #include "Settings.h"
 
-#include "../lsMisc/CommandLineParser.h"
-#include "../lsMisc/IsFileNamable.h"
+#include "../../lsMisc/CommandLineParser.h"
+#include "../../lsMisc/IsFileNamable.h"
 #pragma comment(lib, "Shell32.lib")
 
 
@@ -38,6 +38,7 @@ using namespace System::Text;
 using std::wstring;
 
 
+namespace Ambiesoft { namespace FolderConfig {
 
 ref struct PowWrite
 {
@@ -109,8 +110,8 @@ enum ErrorReturnValue {
 	ErrorReturn_RunAsFailed,
 };
 
-[STAThreadAttribute]
-int main(array<System::String ^> ^args)
+
+int libmain(array<System::String ^> ^args)
 {
 	if (!Settings::init())
 		return ErrorReturn_SettingsInitFailed;
@@ -151,3 +152,13 @@ int main(array<System::String ^> ^args)
 
 	return ErrorReturn_NoError;
 }
+
+public ref struct Program
+{
+	static int main(array<System::String ^> ^args)
+	{
+		return libmain(args);
+	}
+};
+
+} }

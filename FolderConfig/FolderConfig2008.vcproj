@@ -19,9 +19,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)\2008\"
+			OutputDirectory="$(ConfigurationName)\2008"
 			IntermediateDirectory="$(ConfigurationName)\2008"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			CharacterSet="1"
 			ManagedExtensions="1"
 			>
@@ -43,7 +43,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../lsMisc/stlsoft/include"
+				AdditionalIncludeDirectories=".;../../lsMisc/stlsoft/include"
 				PreprocessorDefinitions="WIN32;_DEBUG"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
@@ -63,12 +63,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="$(NoInherit)"
+				OutputFile="$(OutDir)\Ambiesoft.$(ProjectName).dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
 				SubSystem="2"
-				EntryPointSymbol="main"
+				EntryPointSymbol=""
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -94,9 +95,9 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\..\..\..\Linkout\FolderConfig\"
+			OutputDirectory="$(ConfigurationName)\2008"
 			IntermediateDirectory="$(ConfigurationName)\2008"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			CharacterSet="1"
 			ManagedExtensions="1"
 			WholeProgramOptimization="1"
@@ -118,9 +119,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories=".;../lsMisc/stlsoft/include"
+				AdditionalIncludeDirectories=".;../../lsMisc/stlsoft/include"
 				PreprocessorDefinitions="WIN32;NDEBUG"
 				RuntimeLibrary="2"
+				UsePrecompiledHeader="1"
 				WarningLevel="4"
 				DebugInformationFormat="3"
 			/>
@@ -137,10 +139,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="$(NoInherit)"
+				OutputFile="$(OutDir)\Ambiesoft.$(ProjectName).dll"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
-				EntryPointSymbol="main"
+				EntryPointSymbol=""
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -162,7 +165,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy /Y $(SolutionDir)v2v4.exe.config &quot;$(TargetDir)$(TargetFileName).config&quot;&#x0D;&#x0A;&#x0D;&#x0A;copy $(SolutionDir)FolderConfig.ini.sample &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy $(SolutionDir)Readme.txt &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy $(SolutionDir)History.txt &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy $(SolutionDir)License.txt &quot;$(TargetDir)&quot;&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 		</Configuration>
 	</Configurations>
@@ -183,7 +186,7 @@
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
-			RelativePath="..\..\..\..\..\Linkout\DNAssembly\Ambiesoft.Profile.dll"
+			RelativePath="..\..\..\..\..\..\Linkout\DNAssembly\Ambiesoft.Profile.dll"
 			AssemblyName="Ambiesoft.Profile, Version=1.0.0.0, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
@@ -197,38 +200,182 @@
 			<File
 				RelativePath=".\AssemblyInfo.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\lsMisc\browseFolder.cpp"
+				RelativePath="..\..\lsMisc\browseFolder.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\lsMisc\cppclr\clrString.cpp"
+				RelativePath="..\..\lsMisc\cppclr\clrString.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\lsMisc\CommandLineParser.cpp"
+				RelativePath="..\..\lsMisc\CommandLineParser.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\FolderConfig.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\FormMain.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\FormMainInitializeComponent.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\lsMisc\IsFilenamable.cpp"
+				RelativePath="..\..\lsMisc\IsFilenamable.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\Settings.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\stdafx.cpp"
@@ -251,16 +398,64 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\lsMisc\stdwin32\stdwin32.cpp"
+				RelativePath="..\..\lsMisc\stdwin32\stdwin32.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\lsMisc\UrlEncode.cpp"
+				RelativePath="..\..\lsMisc\UrlEncode.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\lsMisc\UTF16toUTF8.cpp"
+				RelativePath="..\..\lsMisc\UTF16toUTF8.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"
+					/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
@@ -269,15 +464,15 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\lsMisc\browseFolder.h"
+				RelativePath="..\..\lsMisc\browseFolder.h"
 				>
 			</File>
 			<File
-				RelativePath="..\lsMisc\cppclr\clrString.h"
+				RelativePath="..\..\lsMisc\cppclr\clrString.h"
 				>
 			</File>
 			<File
-				RelativePath="..\lsMisc\CommandLineParser.h"
+				RelativePath="..\..\lsMisc\CommandLineParser.h"
 				>
 			</File>
 			<File
@@ -300,7 +495,7 @@
 				</File>
 			</File>
 			<File
-				RelativePath="..\lsMisc\IsFilenamable.h"
+				RelativePath="..\..\lsMisc\IsFilenamable.h"
 				>
 			</File>
 			<File
@@ -320,15 +515,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\lsMisc\stdwin32\stdwin32.h"
+				RelativePath="..\..\lsMisc\stdwin32\stdwin32.h"
 				>
 			</File>
 			<File
-				RelativePath="..\lsMisc\UrlEncode.h"
+				RelativePath="..\..\lsMisc\UrlEncode.h"
 				>
 			</File>
 			<File
-				RelativePath="..\lsMisc\UTF16toUTF8.h"
+				RelativePath="..\..\lsMisc\UTF16toUTF8.h"
 				>
 			</File>
 		</Filter>
@@ -356,22 +551,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\FolderConfig.ini.sample"
-			>
-		</File>
-		<File
-			RelativePath=".\History.txt"
-			>
-		</File>
-		<File
-			RelativePath=".\License.txt"
-			>
-		</File>
-		<File
-			RelativePath=".\ReadMe.txt"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

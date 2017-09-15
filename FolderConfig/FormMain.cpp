@@ -25,7 +25,7 @@
 #include "FormMain.h"
 #include "Settings.h"
 
-#include "../lsMisc/BrowseFolder.h"
+#include "../../lsMisc/BrowseFolder.h"
 
 namespace Ambiesoft { namespace FolderConfig {
 	
@@ -86,7 +86,7 @@ namespace Ambiesoft { namespace FolderConfig {
 
 
 		this->Text = String::IsNullOrEmpty(Settings::Title) ? 
-			Application::ProductName + L" | " + Settings::AppName :
+			ProductName + L" | " + Settings::AppName :
 		Settings::Title;
 	}
 
@@ -214,7 +214,7 @@ namespace Ambiesoft { namespace FolderConfig {
 			{
 				MessageBox::Show(this,
 					I18N(ResUtil::RES_FOLDER_SETTINGS_SAVEFAILED), 
-					Application::ProductName,
+					ProductName,
 					MessageBoxButtons::OK,
 					MessageBoxIcon::Error);
 			}
@@ -222,7 +222,7 @@ namespace Ambiesoft { namespace FolderConfig {
 			{
 				MessageBox::Show(this,
 					I18N(ResUtil::RES_FOLDER_SETTINGS_SAVED),
-					Application::ProductName,
+					ProductName,
 					MessageBoxButtons::OK,
 					MessageBoxIcon::Information);
 			}
@@ -250,7 +250,7 @@ namespace Ambiesoft { namespace FolderConfig {
 		{
 			MessageBox::Show(this, 
 				I18N(ResUtil:: RES_FOLDER_SETTINGS_SAVEFAILED),
-				Application::ProductName,
+				ProductName,
 				MessageBoxButtons::OK,
 				MessageBoxIcon::Error);
 		}
@@ -258,7 +258,7 @@ namespace Ambiesoft { namespace FolderConfig {
 		{
 			MessageBox::Show(this,
 				I18N(ResUtil:: RES_FOLDER_SETTINGS_SAVED),
-				Application::ProductName,
+				ProductName,
 				MessageBoxButtons::OK,
 				MessageBoxIcon::Information);
 		}		 

@@ -24,8 +24,8 @@
 #include "stdafx.h"
 #include "Settings.h"
 
-#include "../lsMisc/CommandLineParser.h"
-#include "../lsMisc/stdwin32/stdwin32.h"
+#include "../../lsMisc/CommandLineParser.h"
+#include "../../lsMisc/stdwin32/stdwin32.h"
 
 
 
@@ -37,6 +37,7 @@ namespace Ambiesoft {
 		using namespace System::IO;
 		using namespace System::Text;
 		using namespace System::Windows::Forms;
+
 
 		String^ getHelpMessage()
 		{
@@ -61,7 +62,7 @@ namespace Ambiesoft {
 		void ErrorExit(String^ s)
 		{
 			MessageBox::Show(s + "\r\n\r\n" + getHelpMessage(),
-				Application::ProductName,
+				Settings::ProductName,
 				MessageBoxButtons::OK,
 				MessageBoxIcon::Error);
 
@@ -70,7 +71,7 @@ namespace Ambiesoft {
 		void Alert(String^ msg)
 		{
 			MessageBox::Show(msg,
-				Application::ProductName,
+				Settings::ProductName,
 				MessageBoxButtons::OK,
 				MessageBoxIcon::Warning);
 		}
@@ -111,7 +112,7 @@ namespace Ambiesoft {
 			String^ culture;
 
 			String^ inipath = Path::Combine(Path::GetDirectoryName(Application::ExecutablePath),
-				Application::ProductName+L".ini");
+				ProductName + L".ini");
 			HashIni^ ini = Profile::ReadAll(inipath);
 			
 			Profile::GetString(SEC_OPTION, "title", nullptr, title_, ini);
@@ -158,7 +159,7 @@ namespace Ambiesoft {
 			if(opHelp.hadOption())
 			{
 				MessageBox::Show(getHelpMessage(),
-					Application::ProductName,
+					ProductName,
 					MessageBoxButtons::OK,
 					MessageBoxIcon::Information
 					);

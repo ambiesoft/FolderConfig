@@ -64,9 +64,9 @@
 #include <stlsoft/smartptr/scoped_handle.hpp>
 
 
-#include "../lsMisc/DebugMacro.h"
-#include "../lsMisc/IsFilenamable.h"
-#include "../lsMisc/cppclr/clrString.h"
+#include "../../lsMisc/DebugMacro.h"
+#include "../../lsMisc/IsFilenamable.h"
+#include "../../lsMisc/cppclr/clrString.h"
 
 #include "debugflags.h"
 
