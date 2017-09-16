@@ -9,5 +9,6 @@ int main(array<System::String ^> ^args)
 	String^ path = FolderConfigHelper::GetConfigPath();
 
 	Console::WriteLine(String::Format("path is \"{0}\".",path));
+	Console::WriteLine(String::Format("Path is acceesable...? {0}", FolderConfigHelper::IsFolderAccessable(path)));
     return 0;
 }

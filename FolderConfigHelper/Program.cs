@@ -97,7 +97,16 @@ namespace Ambiesoft
             return null;
         }
 
-        public static string GetConfigPath(string section)
+        static string GetConfigPath(string section)
+        {
+            string ret = GetConfigPathImpl(section);
+            if (string.IsNullOrEmpty(ret))
+                return ret;
+            EnsureFolder(ret);
+            return ret;
+        }
+
+        public static string GetConfigPathImpl(string section)
         {
             string appdir = Path.GetDirectoryName(Application.ExecutablePath);
             string ini = Path.Combine(appdir, "folder.ini");
@@ -140,6 +149,11 @@ namespace Ambiesoft
             return a == folder;
         }
 
+        static void EnsureFolder(string folder)
+        {
+            Directory.CreateDirectory(folder);
+        }
+
         /// <summary>
         /// Check accessibility by actually writing to a file in the folder.
         /// folder: must be a full path
@@ -151,6 +165,7 @@ namespace Ambiesoft
             if (!IsFullPath(folder))
                 throw new Exception("Folder must be full path");
 
+            EnsureFolder(folder);
             string testini = Path.Combine(folder, "test.ini");
             string data = Guid.NewGuid().ToString();
             Profile.WriteString("test", "data", data, testini);

@@ -6,6 +6,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FolderConfigLauncher", "FolderConfigLauncher\FolderConfigLauncher.vcproj", "{BD8E5B99-28A1-4DFF-AA09-C1CC70AB6029}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestApp", "TestApp\TestApp.vcproj", "{01EE1117-83C7-45A5-BE62-8E2249D6C781}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8} = {F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
