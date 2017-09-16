@@ -1,4 +1,6 @@
 *.user
+*.suo
+*.ncb
 
 Debug/
 Release/
@@ -6,9 +8,5 @@ Release/
 
 ipch/
 
-FolderConfig2008.ncb
-FolderConfig2008.suo
-FolderConfig2013.sdf
-FolderConfig2013.v12.suo
 folder.ini
 

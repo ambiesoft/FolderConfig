@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Ambiesoft
 {
-    public static class FolderConfigHelper
+    public static class FolderConfigHelper  
     {
         static HashIni hashFolderConfig_;
         static HashIni HashFolderConfig
@@ -134,7 +134,7 @@ namespace Ambiesoft
             return GetConfigPath("Main");
         }
 
-        bool IsFullPath(string folder)
+        static bool IsFullPath(string folder)
         {
             string a = Path.Combine(@"C:\TestPath\", folder);
             return a == folder;
@@ -146,14 +146,18 @@ namespace Ambiesoft
         /// </summary>
         /// <param name="folder"></param>
         /// <returns></returns>
-        public bool IsFolderAccessable(string folder)
+        static public bool IsFolderAccessable(string folder)
         {
             if (!IsFullPath(folder))
                 throw new Exception("Folder must be full path");
 
             string testini = Path.Combine(folder, "test.ini");
-            int data = System.time;
+            string data = Guid.NewGuid().ToString();
+            Profile.WriteString("test", "data", data, testini);
 
+            string getdata;
+            Profile.GetString("test", "data", null, out getdata, testini);
+            return getdata == data;
         }
     }
 }
