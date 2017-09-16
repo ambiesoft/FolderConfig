@@ -26,7 +26,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="xcopy /E /I /H /R /Y &quot;C:\Linkout\FolderConfig\*&quot; &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)\FolderConfig.ini&quot; &quot;$(TargetDir)&quot;"
+				CommandLine="xcopy /E /I /H /R /Y &quot;C:\Linkout\FolderConfig\*&quot; &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)\FolderConfig.ini&quot; &quot;$(TargetDir)&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -176,8 +176,8 @@
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
-			RelativePath="..\FolderConfigHelper\bin\Release\FolderConfigHelper.dll"
-			AssemblyName="FolderConfigHelper, Version=1.0.0.0, processorArchitecture=MSIL"
+			RelativePath="..\..\..\..\..\..\Linkout\FolderConfig\Ambiesoft.FolderConfigHelper.dll"
+			AssemblyName="Ambiesoft.FolderConfigHelper, Version=1.0.0.0, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
 	</References>
