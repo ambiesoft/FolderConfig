@@ -32,19 +32,21 @@ namespace Ambiesoft { namespace FolderConfig {
 	ref class Settings abstract sealed
 	{
 	public:
-		literal String^ SEC_OPTION				= L"Option";
+
 		literal String^ ProductName				= L"FolderConfig";
 	private:
 		static String^ title_;
-		// static String^ iniFileName_;
+
 		static String^ creator_;
 		static String^ appName_;
 		static String^ section_;
 		
 		literal String^ section_default_		= L"Main";
-		static int defaultSelection_;
 		
-		static String^ defaultUserPath_;
+		static int defaultpathtype_;
+		
+		static String^ defaultpath0_;
+		static String^ defaultpath3_;
 
 
 		literal String^ userInifileName_ = L"folder.ini";
@@ -92,13 +94,17 @@ namespace Ambiesoft { namespace FolderConfig {
 			String^ get() { return appName_; }
 		}
 
-		static property int DefaultSelection
+		static property int DefaultPathType
 		{
-			int get() { return defaultSelection_; }
+			int get() { return defaultpathtype_; }
 		}
-		static property String^ DefaultUserPath
+		static property String^ DefaultPath0
 		{
 			String^ get();
+		}
+		static property String^ DefaultPath3
+		{
+			String^ get() { return defaultpath3_; };
 		}
 		//static public bool initDefault()
 		//{

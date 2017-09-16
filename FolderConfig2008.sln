@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FolderConfig", "FolderConfi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FolderConfigLauncher", "FolderConfigLauncher\FolderConfigLauncher.vcproj", "{BD8E5B99-28A1-4DFF-AA09-C1CC70AB6029}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestApp", "TestApp\TestApp.vcproj", "{01EE1117-83C7-45A5-BE62-8E2249D6C781}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +21,10 @@ Global
 		{BD8E5B99-28A1-4DFF-AA09-C1CC70AB6029}.Debug|Win32.Build.0 = Debug|Win32
 		{BD8E5B99-28A1-4DFF-AA09-C1CC70AB6029}.Release|Win32.ActiveCfg = Release|Win32
 		{BD8E5B99-28A1-4DFF-AA09-C1CC70AB6029}.Release|Win32.Build.0 = Release|Win32
+		{01EE1117-83C7-45A5-BE62-8E2249D6C781}.Debug|Win32.ActiveCfg = Debug|Win32
+		{01EE1117-83C7-45A5-BE62-8E2249D6C781}.Debug|Win32.Build.0 = Debug|Win32
+		{01EE1117-83C7-45A5-BE62-8E2249D6C781}.Release|Win32.ActiveCfg = Release|Win32
+		{01EE1117-83C7-45A5-BE62-8E2249D6C781}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

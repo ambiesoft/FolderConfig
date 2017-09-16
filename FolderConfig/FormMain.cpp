@@ -50,6 +50,11 @@ namespace Ambiesoft { namespace FolderConfig {
 			String^ uspath;
 			if (Profile::GetString(Settings::Section, KEY_FOLDER, String::Empty, uspath, Settings::UserIniFullpath))
 				folbrow->SelectedPath = uspath;
+			else
+			{
+				if(!String::IsNullOrEmpty(Settings::DefaultPath3))
+					folbrow->SelectedPath = Settings::DefaultPath3;
+			}
 
 			switch(pathtype)
 			{
@@ -107,8 +112,8 @@ namespace Ambiesoft { namespace FolderConfig {
 					System::IO::FileInfo fi(Application::ExecutablePath);
 					System::IO::DirectoryInfo^ di = fi.Directory;
 					path = di->FullName;
-					if(!String::IsNullOrEmpty(Settings::DefaultUserPath))
-						path = System::IO::Path::Combine(path, Settings::DefaultUserPath);
+					if(!String::IsNullOrEmpty(Settings::DefaultPath0))
+						path = System::IO::Path::Combine(path, Settings::DefaultPath0);
 					labelAttention->Visible = false;
 				}
 				break;

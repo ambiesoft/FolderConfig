@@ -43,17 +43,20 @@ namespace Ambiesoft {
 		{
 			StringBuilder sb;
 			sb.AppendLine(I18N(L"Usage:"));
-			sb.AppendLine(L"FolderConfig.exe [/title Title] [/inifile Inifile] [/defaultselection Defaultselection] [/defaultpath Defaultpath] /creator Creator /appname Appname [/section Section] [/culture Culture]");
+			sb.AppendLine(L"FolderConfig.exe [/section Section] [/title Title] [/inifile Inifile] [/defaultselection Defaultselection] [/defaultpath0 Defaultpath0] [/defaultpath3 Defaultpath3] [/creator Creator] [/appname Appname] [/culture Culture]");
 			sb.AppendLine();
 
+			sb.AppendLine(I18N(L"Section: Section name of config. (Default is [Main])"));
+			
 			sb.AppendLine(I18N(L"Title: Title shown in Titlebar."));
 			sb.AppendLine(I18N(L"Inifile: filename user chosen data will be saved. (Default is folder.ini)"));
 
 			sb.AppendLine(I18N(L"Defaultselection: 0,1,2 or 3. (Default is 0)"));
-			sb.AppendLine(I18N(L"Defaultpath: Default relative folder path from exe-resident folder. (Default is Exe-resident folder)"));
+			sb.AppendLine(I18N(L"Defaultpath0: Default relative path from exe-resident folder for pathtype of 0. (Default is Exe-resident folder)"));
+			sb.AppendLine(I18N(L"Defaultpath3: Default full path for pathytpe of 3."));
 			sb.AppendLine(I18N(L"Creator: Creator name used as subfolder of roaming or local folder."));
 			sb.AppendLine(I18N(L"Appname: App name used as subfolder of Creator."));
-			sb.AppendLine(I18N(L"Section: Section name of config. (Default is [Main])"));
+			
 			sb.AppendLine(I18N(L"Culture: Culture string, (ex) \"ja-JP\"."));
 
 			return sb.ToString();
@@ -88,8 +91,11 @@ namespace Ambiesoft {
 			//COption opIniFile(L"/inifile", 1);
 			//parser.AddOption(&opIniFile);
 
-			COption opDefaultPath(L"/defaultpath", 1);
-			parser.AddOption(&opDefaultPath);
+			COption opDefaultPath0(L"/defaultpath0", 1);
+			parser.AddOption(&opDefaultPath0);
+
+			COption opDefaultPath3(L"/defaultpath3", 1);
+			parser.AddOption(&opDefaultPath3);
 
 			COption opCreator(L"/creator", 1);
 			parser.AddOption(&opCreator);
@@ -115,12 +121,28 @@ namespace Ambiesoft {
 				ProductName + L".ini");
 			HashIni^ ini = Profile::ReadAll(inipath);
 			
-			Profile::GetString(SEC_OPTION, "title", nullptr, title_, ini);
-			Profile::GetString(SEC_OPTION, "appname", nullptr, appName_, ini);
-			Profile::GetString(SEC_OPTION, "creator", nullptr, creator_, ini);
-			Profile::GetInt(SEC_OPTION, "defaultselection", -1, defaultSelection_, ini);
-			Profile::GetString(SEC_OPTION, "defaultpath", nullptr, defaultUserPath_, ini);
-			Profile::GetString(SEC_OPTION, "culture", nullptr, culture, ini);
+			// section
+			if (opSection.hadOption())
+			{
+				if (opSection.getValueCount() > 1)
+				{
+					ErrorExit(I18N(String::Format(L"{0} appnames specified. Only one acceptable.",
+						opSection.getValueCount())));
+				}
+				Settings::section_ = gcnew String(opSection.getValueStrings().c_str());
+			}
+			if (String::IsNullOrEmpty(Settings::Section))
+			{
+				Settings::section_ = Settings::section_default_;
+			}
+
+			Profile::GetString(Section, "title", nullptr, title_, ini);
+			Profile::GetString(Section, "appname", nullptr, appName_, ini);
+			Profile::GetString(Section, "creator", nullptr, creator_, ini);
+			Profile::GetInt(Section, "defaultpathtype", -1, defaultpathtype_, ini);
+			Profile::GetString(Section, "defaultpath0", nullptr, defaultpath0_, ini);
+			Profile::GetString(Section, "defaultpath3", nullptr, defaultpath3_, ini);
+			Profile::GetString(Section, "culture", nullptr, culture, ini);
 #ifdef _DEBUG
 			if(!String::IsNullOrEmpty(title_))
 				System::Diagnostics::Debug::Print(L"title is \"{0}\" (from \"{1}\")",title_,inipath);
@@ -128,10 +150,12 @@ namespace Ambiesoft {
 				System::Diagnostics::Debug::Print(L"Appname is \"{0}\" (from \"{1}\")",appName_,inipath);
 			if(!String::IsNullOrEmpty(creator_))
 				System::Diagnostics::Debug::Print(L"Creator is \"{0}\" (from \"{1}\")",creator_,inipath);
-			if(defaultSelection_ >=0)
-				System::Diagnostics::Debug::Print(L"defaultselection is \"{0}\" (from \"{1}\")",defaultSelection_,inipath);
-			if(!String::IsNullOrEmpty(defaultUserPath_))
-				System::Diagnostics::Debug::Print(L"defaultpath is \"{0}\" (from \"{1}\")",defaultUserPath_,inipath);
+			if(defaultpathtype_ >=0)
+				System::Diagnostics::Debug::Print(L"defaultpathtype is \"{0}\" (from \"{1}\")",defaultpathtype_,inipath);
+			if(!String::IsNullOrEmpty(defaultpath0_))
+				System::Diagnostics::Debug::Print(L"defaultpath0_ is \"{0}\" (from \"{1}\")",defaultpath0_,inipath);
+			if(!String::IsNullOrEmpty(defaultpath3_))
+				System::Diagnostics::Debug::Print(L"defaultpath3_ is \"{0}\" (from \"{1}\")",defaultpath3_,inipath);
 			if(!String::IsNullOrEmpty(culture))
 				System::Diagnostics::Debug::Print(L"culture is \"{0}\" (from \"{1}\")",culture,inipath);
 #endif
@@ -203,26 +227,39 @@ namespace Ambiesoft {
 
 
 			// default path
-			if (opDefaultPath.hadOption())
+			if (opDefaultPath0.hadOption())
 			{
-				if (opDefaultPath.getValueCount() > 1)
+				if (opDefaultPath0.getValueCount() > 1)
 				{
 					ErrorExit(I18N(String::Format(L"{0} default paths specified. Only one acceptable.",
-						opDefaultPath.getValueCount())));
+						opDefaultPath0.getValueCount())));
 				}
-				if (!IsRelativePathNamble(opDefaultPath.getValueStrings().c_str()))
+				if (!IsRelativePathNamble(opDefaultPath0.getValueStrings().c_str()))
 				{
 					ErrorExit(I18N(String::Format(L"{0} must not include {1}.",
 						"defaultpath", toCLR(GetRelativePathInamableChars()))));
 				}
-				defaultUserPath_ = gcnew String(opDefaultPath.getValueStrings().c_str());
+				defaultpath0_ = gcnew String(opDefaultPath0.getValueStrings().c_str());
 			}
-			if(!String::IsNullOrEmpty(defaultUserPath_))
+			if(!String::IsNullOrEmpty(defaultpath0_))
 			{
 				// must be relative path
-				if(!PathIsRelative(toLPCW(defaultUserPath_)))
+				if(!PathIsRelative(toLPCW(defaultpath0_)))
 				{
-					ErrorExit(I18N(L"Defaultpath must be a relative path."));
+					ErrorExit(String::Format(I18N(L"Defaultpath0 \"{0}\" must be a relative path."), defaultpath0_));
+				}
+			}
+
+			if (opDefaultPath3.hadOption())
+			{
+				defaultpath3_ = gcnew String(opDefaultPath3.getValueStrings().c_str());
+			}
+			if(!String::IsNullOrEmpty(defaultpath3_))
+			{
+				// must be relative path
+				if(PathIsRelative(toLPCW(defaultpath3_)))
+				{
+					ErrorExit(String::Format(I18N(L"Defaultpath3 \"{0}\" must be a full path."), defaultpath3_));
 				}
 			}
 
@@ -278,20 +315,7 @@ namespace Ambiesoft {
 			}
 
 
-			// section
-			if (opSection.hadOption())
-			{
-				if (opSection.getValueCount() > 1)
-				{
-					ErrorExit(I18N(String::Format(L"{0} appnames specified. Only one acceptable.",
-						opSection.getValueCount())));
-				}
-				Settings::section_ = gcnew String(opSection.getValueStrings().c_str());
-			}
-			if (String::IsNullOrEmpty(Settings::Section))
-			{
-				Settings::section_ = Settings::section_default_;
-			}
+
 
 
 
@@ -316,15 +340,15 @@ namespace Ambiesoft {
 		//	return iniFileName_;
 		//}
 
-		String^ Settings::DefaultUserPath::get()
+		String^ Settings::DefaultPath0::get()
 		{
-			if (String::IsNullOrEmpty(defaultUserPath_))
+			if (String::IsNullOrEmpty(defaultpath0_))
 				return toCLR(stdGetParentDirectory(stdGetModuleFileName()));
 
-			if (!stdIsFullPath(toLPCW(defaultUserPath_)))
-				return toCLR(stdCombinePath(stdGetParentDirectory(stdGetModuleFileName()), toWstring(defaultUserPath_)));
+			if (!stdIsFullPath(toLPCW(defaultpath0_)))
+				return toCLR(stdCombinePath(stdGetParentDirectory(stdGetModuleFileName()), toWstring(defaultpath0_)));
 
-			return defaultUserPath_;
+			return defaultpath0_;
 		}
 
 	}

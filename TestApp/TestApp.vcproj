@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="FolderConfigLauncher"
-	ProjectGUID="{BD8E5B99-28A1-4DFF-AA09-C1CC70AB6029}"
-	RootNamespace="FolderConfigLauncher"
+	Name="TestApp"
+	ProjectGUID="{01EE1117-83C7-45A5-BE62-8E2249D6C781}"
+	RootNamespace="TestApp"
 	Keyword="ManagedCProj"
 	TargetFrameworkVersion="196613"
 	>
@@ -18,7 +18,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="C:\Linkout\FolderConfigD\"
+			OutputDirectory="$(ProjectDir)Build\$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -26,6 +26,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				CommandLine="xcopy /E /I /H /R /Y &quot;C:\Linkout\FolderConfig\*&quot; &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)\FolderConfig.ini&quot; &quot;$(TargetDir)&quot;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -60,12 +61,9 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="$(NoInherit)"
-				OutputFile="$(OutDir)\FolderConfig.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
-				SubSystem="2"
-				EntryPointSymbol="main"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -88,12 +86,11 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="REM copy /Y $(ProjectDir)v2v4.exe.config &quot;$(TargetDir)$(TargetFileName).config&quot;&#x0D;&#x0A;&#x0D;&#x0A;copy $(ProjectDir)FolderConfig.ini.sample &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy $(ProjectDir)FolderConfig-Readme.txt &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy $(ProjectDir)FolderConfig-History.txt &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy $(ProjectDir)FolderConfig-License.txt &quot;$(TargetDir)&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="C:\Linkout\FolderConfig\"
+			OutputDirectory="$(ProjectDir)Build\$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -135,11 +132,8 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="$(NoInherit)"
-				OutputFile="$(OutDir)\FolderConfig.exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
-				SubSystem="2"
-				EntryPointSymbol="main"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -162,7 +156,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy /Y $(ProjectDir)v2v4.exe.config &quot;$(TargetDir)$(TargetFileName).config&quot;&#x0D;&#x0A;&#x0D;&#x0A;copy $(ProjectDir)FolderConfig.ini.sample &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy $(ProjectDir)FolderConfig-Readme.txt &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy $(ProjectDir)FolderConfig-History.txt &quot;$(TargetDir)&quot;&#x0D;&#x0A;copy $(ProjectDir)FolderConfig-License.txt &quot;$(TargetDir)&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -178,23 +171,14 @@
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
-			RelativePath="System.Drawing.dll"
-			AssemblyName="System.Drawing, Version=2.0.0.0, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
-			MinFrameworkVersion="131072"
-		/>
-		<AssemblyReference
-			RelativePath="System.Windows.Forms.dll"
-			AssemblyName="System.Windows.Forms, Version=2.0.0.0, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
-			MinFrameworkVersion="131072"
-		/>
-		<AssemblyReference
 			RelativePath="System.XML.dll"
 			AssemblyName="System.Xml, Version=2.0.0.0, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
-		<ProjectReference
-			ReferencedProjectIdentifier="{F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8}"
-			RelativePathToProject=".\FolderConfig\FolderConfig2008.vcproj"
+		<AssemblyReference
+			RelativePath="..\FolderConfigHelper\bin\Release\FolderConfigHelper.dll"
+			AssemblyName="FolderConfigHelper, Version=1.0.0.0, processorArchitecture=MSIL"
+			MinFrameworkVersion="131072"
 		/>
 	</References>
 	<Files>
@@ -205,10 +189,6 @@
 			>
 			<File
 				RelativePath=".\AssemblyInfo.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\FolderConfigLauncher.cpp"
 				>
 			</File>
 			<File
@@ -231,6 +211,10 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath=".\TestApp.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="1 Header Files"
@@ -252,28 +236,20 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\app.rc"
+				RelativePath=".\app.ico"
 				>
 			</File>
 			<File
-				RelativePath=".\icon.ico"
+				RelativePath=".\app.rc"
 				>
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\FolderConfig-History.txt"
+			RelativePath=".\FolderConfig.ini"
 			>
 		</File>
 		<File
-			RelativePath=".\FolderConfig-License.txt"
-			>
-		</File>
-		<File
-			RelativePath=".\FolderConfig-ReadMe.txt"
-			>
-		</File>
-		<File
-			RelativePath=".\FolderConfig.ini.sample"
+			RelativePath=".\ReadMe.txt"
 			>
 		</File>
 	</Files>
