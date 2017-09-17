@@ -44,7 +44,7 @@ namespace Ambiesoft { namespace FolderConfig {
 			Profile::GetInt(Settings::Section, KEY_PATH_TYPE, -1, pathtype, Settings::UserIniFullpath);
 			if(pathtype==-1)
 			{
-				pathtype=0;
+				pathtype=Settings::DefaultPathType;
 			}
 
 			String^ uspath;

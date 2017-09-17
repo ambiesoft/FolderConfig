@@ -27,7 +27,7 @@
 #include "../../lsMisc/CommandLineParser.h"
 #include "../../lsMisc/stdwin32/stdwin32.h"
 
-
+using std::wstring;
 
 namespace Ambiesoft {
 	namespace FolderConfig {
@@ -43,7 +43,7 @@ namespace Ambiesoft {
 		{
 			StringBuilder sb;
 			sb.AppendLine(I18N(L"Usage:"));
-			sb.AppendLine(L"FolderConfig.exe [/section Section] [/title Title] [/inifile Inifile] [/defaultselection Defaultselection] [/defaultpath0 Defaultpath0] [/defaultpath3 Defaultpath3] [/creator Creator] [/appname Appname] [/culture Culture]");
+			sb.AppendLine(L"FolderConfig.exe [/section Section] [/title Title] [/inifile Inifile] [/defaultpathtype Defaultpathtype] [/defaultpath0 Defaultpath0] [/defaultpath3 Defaultpath3] [/creator Creator] [/appname Appname] [/culture Culture]");
 			sb.AppendLine();
 
 			sb.AppendLine(I18N(L"Section: Section name of config. (Default is [Main])"));
@@ -51,7 +51,7 @@ namespace Ambiesoft {
 			sb.AppendLine(I18N(L"Title: Title shown in Titlebar."));
 			sb.AppendLine(I18N(L"Inifile: filename user chosen data will be saved. (Default is folder.ini)"));
 
-			sb.AppendLine(I18N(L"Defaultselection: 0,1,2 or 3. (Default is 0)"));
+			sb.AppendLine(I18N(L"Defaultpathtype: 0,1,2 or 3. (Default is 0)"));
 			sb.AppendLine(I18N(L"Defaultpath0: Default relative path from exe-resident folder for pathtype of 0. (Default is Exe-resident folder)"));
 			sb.AppendLine(I18N(L"Defaultpath3: Default full path for pathytpe of 3."));
 			sb.AppendLine(I18N(L"Creator: Creator name used as subfolder of roaming or local folder."));
@@ -90,6 +90,9 @@ namespace Ambiesoft {
 
 			//COption opIniFile(L"/inifile", 1);
 			//parser.AddOption(&opIniFile);
+
+			COption opDefaultPathtype(L"/defaultpathtype", 1);
+			parser.AddOption(&opDefaultPathtype);
 
 			COption opDefaultPath0(L"/defaultpath0", 1);
 			parser.AddOption(&opDefaultPath0);
@@ -225,6 +228,18 @@ namespace Ambiesoft {
 			//	ErrorExit(I18N(L"No ini file specified"));
 			//}
 
+			if(opDefaultPathtype.hadOption())
+			{
+				wstring ws = opDefaultPathtype.getFirstValue();
+				if(ws != L"0" &&
+					ws != L"1" &&
+					ws != L"2" &&
+					ws != L"3" )
+				{
+					ErrorExit(I18N(L"Defaultpathtype must be 0,1,2 or 3."));
+				}
+				defaultpathtype_ = _wtoi(ws.c_str());
+			}
 
 			// default path
 			if (opDefaultPath0.hadOption())

@@ -106,7 +106,7 @@ namespace Ambiesoft
             return ret;
         }
 
-        public static string GetConfigPathImpl(string section)
+        static string GetConfigPathImpl(string section)
         {
             string appdir = Path.GetDirectoryName(Application.ExecutablePath);
             string ini = Path.Combine(appdir, "folder.ini");
@@ -151,7 +151,15 @@ namespace Ambiesoft
 
         static void EnsureFolder(string folder)
         {
-            Directory.CreateDirectory(folder);
+            if (Directory.Exists(folder))
+                return;
+            try
+            {
+                Directory.CreateDirectory(folder);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         /// <summary>
