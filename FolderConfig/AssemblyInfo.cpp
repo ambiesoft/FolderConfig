@@ -12,12 +12,12 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyConfigurationAttribute("")];
 [assembly:AssemblyCompanyAttribute("")];
 [assembly:AssemblyProductAttribute("FolderConfig")];
-[assembly:AssemblyCopyrightAttribute("Copyright (c)  2014")];
+[assembly:AssemblyCopyrightAttribute("Copyright (c)  2017")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];
 
 
-[assembly:AssemblyVersionAttribute("1.0.1.*")];
+[assembly:AssemblyVersionAttribute("1.0.2.*")];
 
 [assembly:ComVisible(false)];
 
