@@ -43,7 +43,7 @@ namespace Ambiesoft {
 		{
 			StringBuilder sb;
 			sb.AppendLine(I18N(L"Usage:"));
-			sb.AppendLine(L"FolderConfig.exe [/section Section] [/title Title] [/inifile Inifile] [/defaultpathtype Defaultpathtype] [/defaultpath0 Defaultpath0] [/defaultpath3 Defaultpath3] [/creator Creator] [/appname Appname] [/culture Culture]");
+			sb.AppendLine(L"FolderConfig.exe [/section Section] [/title Title] [/inifile Inifile] /defaultpathtype Defaultpathtype [/defaultpath0 Defaultpath0] [/defaultpath3 Defaultpath3] [/creator Creator] [/appname Appname] [/culture Culture]");
 			sb.AppendLine();
 
 			sb.AppendLine(I18N(L"Section: Section name of config. (Default is [Main])"));
@@ -51,7 +51,7 @@ namespace Ambiesoft {
 			sb.AppendLine(I18N(L"Title: Title shown in Titlebar."));
 			sb.AppendLine(I18N(L"Inifile: filename user chosen data will be saved. (Default is folder.ini)"));
 
-			sb.AppendLine(I18N(L"Defaultpathtype: 0,1,2 or 3. (Default is 0)"));
+			sb.AppendLine(I18N(L"Defaultpathtype: 0,1,2 or 3."));
 			sb.AppendLine(I18N(L"Defaultpath0: Default relative path from exe-resident folder for pathtype of 0. (Default is Exe-resident folder)"));
 			sb.AppendLine(I18N(L"Defaultpath3: Default full path for pathytpe of 3."));
 			sb.AppendLine(I18N(L"Creator: Creator name used as subfolder of roaming or local folder."));
@@ -62,14 +62,12 @@ namespace Ambiesoft {
 			return sb.ToString();
 		}
 
-		void ErrorExit(String^ s)
+		void ShowError(String^ s)
 		{
 			MessageBox::Show(s + "\r\n\r\n" + getHelpMessage(),
 				Settings::ProductName,
 				MessageBoxButtons::OK,
 				MessageBoxIcon::Error);
-
-			System::Environment::Exit(1);
 		}
 		void Alert(String^ msg)
 		{
@@ -129,8 +127,10 @@ namespace Ambiesoft {
 			{
 				if (opSection.getValueCount() > 1)
 				{
-					ErrorExit(I18N(String::Format(L"{0} appnames specified. Only one acceptable.",
+					ShowError(
+						I18N(String::Format(L"{0} appnames specified. Only one acceptable.",
 						opSection.getValueCount())));
+					return false;
 				}
 				Settings::section_ = gcnew String(opSection.getValueStrings().c_str());
 			}
@@ -236,23 +236,34 @@ namespace Ambiesoft {
 					ws != L"2" &&
 					ws != L"3" )
 				{
-					ErrorExit(I18N(L"Defaultpathtype must be 0,1,2 or 3."));
+					ShowError(I18N(L"Defaultpathtype must be 0,1,2 or 3."));
+					return false;
 				}
 				defaultpathtype_ = _wtoi(ws.c_str());
 			}
+			if (defaultpathtype_ < 0)
+			{
+				ShowError(I18N(L"Defaultpathtype must be specified."));
+				return false;
+			}
+
 
 			// default path
 			if (opDefaultPath0.hadOption())
 			{
 				if (opDefaultPath0.getValueCount() > 1)
 				{
-					ErrorExit(I18N(String::Format(L"{0} default paths specified. Only one acceptable.",
+					ShowError(
+						I18N(String::Format(L"{0} default paths specified. Only one acceptable.",
 						opDefaultPath0.getValueCount())));
+					return false;
 				}
 				if (!IsRelativePathNamble(opDefaultPath0.getValueStrings().c_str()))
 				{
-					ErrorExit(I18N(String::Format(L"{0} must not include {1}.",
+					ShowError(
+						I18N(String::Format(L"{0} must not include {1}.",
 						"defaultpath", toCLR(GetRelativePathInamableChars()))));
+					return false;
 				}
 				defaultpath0_ = gcnew String(opDefaultPath0.getValueStrings().c_str());
 			}
@@ -261,7 +272,8 @@ namespace Ambiesoft {
 				// must be relative path
 				if(!PathIsRelative(toLPCW(defaultpath0_)))
 				{
-					ErrorExit(String::Format(I18N(L"Defaultpath0 \"{0}\" must be a relative path."), defaultpath0_));
+					ShowError(String::Format(I18N(L"Defaultpath0 \"{0}\" must be a relative path."), defaultpath0_));
+					return false;
 				}
 			}
 
@@ -274,7 +286,8 @@ namespace Ambiesoft {
 				// must be relative path
 				if(PathIsRelative(toLPCW(defaultpath3_)))
 				{
-					ErrorExit(String::Format(I18N(L"Defaultpath3 \"{0}\" must be a full path."), defaultpath3_));
+					ShowError(String::Format(I18N(L"Defaultpath3 \"{0}\" must be a full path."), defaultpath3_));
+					return false;
 				}
 			}
 
@@ -284,13 +297,17 @@ namespace Ambiesoft {
 			{
 				if (opCreator.getValueCount() > 1)
 				{
-					ErrorExit(I18N(String::Format(L"{0} creators path specified. Only one acceptable.",
+					ShowError(
+						I18N(String::Format(L"{0} creators path specified. Only one acceptable.",
 						opCreator.getValueCount())));
+					return false;
 				}
 				if (!IsFileNamble(opCreator.getValueStrings().c_str()))
 				{
-					ErrorExit(I18N(String::Format(L"{0} must not include {1}.",
+					ShowError(
+						I18N(String::Format(L"{0} must not include {1}.",
 						"creator", GetFileInamableCharsCLR())));
+					return false;
 				}
 				Settings::creator_ = gcnew String(opCreator.getValueStrings().c_str());
 			}
@@ -301,7 +318,8 @@ namespace Ambiesoft {
 
 			if (String::IsNullOrEmpty(Settings::Creator))
 			{
-				ErrorExit(I18N(L"Creator must be specified."));
+				ShowError(I18N(L"Creator must be specified."));
+				return false;
 			}
 
 
@@ -310,13 +328,17 @@ namespace Ambiesoft {
 			{
 				if (opAppName.getValueCount() > 1)
 				{
-					ErrorExit(I18N(String::Format(L"{0} appnames specified. Only one acceptable.",
+					ShowError(
+						I18N(String::Format(L"{0} appnames specified. Only one acceptable.",
 						opAppName.getValueCount())));
+					return false;
 				}
 				if (!IsFileNamble(opAppName.getValueStrings().c_str()))
 				{
-					ErrorExit(I18N(String::Format(L"{0} must not include {1}.",
+					ShowError(
+						I18N(String::Format(L"{0} must not include {1}.",
 						L"appname", GetFileInamableCharsCLR())));
+					return false;
 				}
 				Settings::appName_ = gcnew String(opAppName.getValueStrings().c_str());
 			}
@@ -326,7 +348,8 @@ namespace Ambiesoft {
 			//}
 			if (String::IsNullOrEmpty(Settings::AppName))
 			{
-				ErrorExit(I18N(L"Appname must be specified."));
+				ShowError(I18N(L"Appname must be specified."));
+				return false;
 			}
 
 
@@ -340,7 +363,8 @@ namespace Ambiesoft {
 				StringBuilder sb;
 				sb.AppendLine(I18N(L"Unknown option:"));
 				sb.AppendLine(gcnew String(parser.getUnknowOptionStrings().c_str()));
-				ErrorExit(sb.ToString());
+				ShowError(sb.ToString());
+				return false;
 			}
 
 			return true;

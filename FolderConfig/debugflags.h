@@ -23,4 +23,25 @@
 
 #pragma once
 
+#ifdef _DEBUG
 #define _DEBUG_RESOURCE
+#define _DEBUG_RETVAL
+#endif // _DEBUG
+
+
+
+
+#ifdef _DEBUG_RESOURCE
+	#define DTRACE_RESOUCE(s) DTRACE(L"Resource: " + (s) + L": " + __FUNCTION__)
+	#pragma message("_DEBUG_RESOURCE")
+#else
+	#define DTRACE_RESOUCE(s) ((void)0)
+#endif
+
+
+#ifdef _DEBUG_RETVAL
+	#define DTRACE_RETVAL(s) DTRACE(L"RETVAL: " + (s) + L": " + __FUNCTION__)
+	#pragma message("_DEBUG_RETVAL")
+#else
+	#define DTRACE_RETVAL(s) ((void)0)
+#endif

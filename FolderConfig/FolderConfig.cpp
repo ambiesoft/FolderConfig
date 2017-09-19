@@ -30,6 +30,7 @@
 #include "../../lsMisc/IsFileNamable.h"
 #pragma comment(lib, "Shell32.lib")
 
+using namespace System::Diagnostics;
 
 using namespace Ambiesoft;
 using namespace Ambiesoft::FolderConfig;
@@ -99,35 +100,47 @@ ref struct PowWrite
 	}
 };
 
-
-
-
-
+// up to 15 byte
 enum ErrorReturnValue {
-	ErrorReturn_NoError = 0,
+	ErrorReturn_NoError= 0,
 	ErrorReturn_SettingsInitFailed ,
 	ErrorReturn_ParseFailed,
 	ErrorReturn_RunAsFailed,
 };
 
+HRESULT MakeRetval(bool success, WORD errorCode, bool okcancel)
+{
+	return HRESULT( 
+		((unsigned long)(success?0:1))		<<31 		|
+		((unsigned long)1)				<<29 		| // customer code (0x20000000)
+		((unsigned long)errorCode)		<<1  		| // errorCode
+		((unsigned long)(okcancel?1:0))
+		);
+}
 
 int libmain(array<System::String ^> ^args)
 {
 	if (!Settings::init())
-		return ErrorReturn_SettingsInitFailed;
+	{
+		return MakeRetval(false, ErrorReturn_SettingsInitFailed, false);
+	}
 
 	if(!PowWrite::IsAdmin() && !PowWrite::do_c_write(Settings::UserIniFullpath))
 	{
 		// could not write to inifile, launch me in higher priviledge
-		System::Diagnostics::ProcessStartInfo psi;
-		psi.UseShellExecute=true;
-		psi.WorkingDirectory = System::Environment::CurrentDirectory;
-		psi.FileName = Application::ExecutablePath;
-		psi.Arguments = PowWrite::getArgForCreate(args);
-		psi.Verb = L"runas";
 		try
 		{
-			System::Diagnostics::Process::Start(%psi);
+			System::Diagnostics::ProcessStartInfo psi;
+			psi.UseShellExecute=true;
+			psi.WorkingDirectory = System::Environment::CurrentDirectory;
+			psi.FileName = Application::ExecutablePath;
+			psi.Arguments = PowWrite::getArgForCreate(args);
+			psi.Verb = L"runas";
+			Process^ pro = Process::Start(%psi);
+			pro->WaitForExit();
+			
+			DTRACE_RETVAL(pro->ExitCode);
+			return pro->ExitCode;
 		}
 		catch(System::Exception^ ex)
 		{
@@ -137,9 +150,8 @@ int libmain(array<System::String ^> ^args)
 				System::Windows::Forms::MessageBoxButtons::OK,
 				System::Windows::Forms::MessageBoxIcon::Error);
 
-			return ErrorReturn_RunAsFailed;
+			return MakeRetval(false,ErrorReturn_RunAsFailed,false);
 		}
-		return ErrorReturn_NoError;
 	}
 
 
@@ -147,17 +159,31 @@ int libmain(array<System::String ^> ^args)
 	Application::SetCompatibleTextRenderingDefault(false); 
 
 	FormMain dlg;
+	System::Windows::Forms::DialogResult dr = dlg.ShowDialog();
 
-	dlg.ShowDialog();
-
-	return ErrorReturn_NoError;
+	return MakeRetval(true, ErrorReturn_NoError, dr != System::Windows::Forms::DialogResult::Cancel);
 }
 
 public ref struct Program
 {
 	static int main(array<System::String ^> ^args)
 	{
-		return libmain(args);
+		int ret = libmain(args);
+#ifdef _DEBUG_RETVAL
+		StringBuilder sb;
+		DTRACE_RETVAL(ret);
+		sb.AppendLine(String::Format(L"Succeeded={0}", SUCCEEDED(ret) ? "true":"false"));
+		sb.AppendLine(String::Format(L"Customer={0}", (ret & 0x20000000) ? "true":"false"));
+		sb.AppendLine("HRESULT_FACILITY: " + HRESULT_FACILITY(ret));
+
+		WORD code = HRESULT_CODE(ret);
+		sb.AppendLine("SCODE_CODE: " + code);
+		sb.AppendLine("MyError: " + (code>>1));
+		sb.AppendLine("OkCancel: " + ((ret&1)?"OK":"Cancel"));
+		DTRACE_RETVAL(sb.ToString());
+		MessageBox::Show(sb.ToString(), "_DEBUG_RETVAL" + (PowWrite::IsAdmin()?"(Admin)":"(Normal)"));
+#endif
+		return ret;
 	}
 };
 
