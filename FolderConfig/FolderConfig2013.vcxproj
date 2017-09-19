@@ -19,7 +19,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CLRSupport>true</CLRSupport>
@@ -27,7 +27,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CLRSupport>true</CLRSupport>
@@ -53,9 +53,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ReferencePath>C:\Linkout\DNAssembly;$(ReferencePath)</ReferencePath>
-    <OutDir>..\..\..\..\..\Linkout\FolderConfig\</OutDir>
+    <OutDir>C:\Linkout\FolderConfig\</OutDir>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
-    <IntDir>$(Configuration)\$(VisualStudioEdition)\</IntDir>
+    <IntDir>$(Configuration)\2013\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -65,7 +65,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>.;../lsMisc/stlsoft/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../lsMisc/stlsoft/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -80,7 +80,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>.;../lsMisc/stlsoft/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../lsMisc/stlsoft/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>
@@ -114,25 +114,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\lsMisc\browseFolder.cpp">
+    <ClCompile Include="..\..\lsMisc\browseFolder.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\CommandLineParser.cpp">
+    <ClCompile Include="..\..\lsMisc\CommandLineParser.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\cppclr\clrString.cpp">
+    <ClCompile Include="..\..\lsMisc\cppclr\clrString.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\IsFilenamable.cpp">
+    <ClCompile Include="..\..\lsMisc\IsFilenamable.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\stdwin32\stdwin32.cpp">
+    <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\UrlEncode.cpp">
+    <ClCompile Include="..\..\lsMisc\UrlEncode.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\UTF16toUTF8.cpp">
+    <ClCompile Include="..\..\lsMisc\UTF16toUTF8.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -156,13 +156,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lsMisc\browseFolder.h" />
-    <ClInclude Include="..\lsMisc\CommandLineParser.h" />
-    <ClInclude Include="..\lsMisc\cppclr\clrString.h" />
-    <ClInclude Include="..\lsMisc\IsFilenamable.h" />
-    <ClInclude Include="..\lsMisc\stdwin32\stdwin32.h" />
-    <ClInclude Include="..\lsMisc\UrlEncode.h" />
-    <ClInclude Include="..\lsMisc\UTF16toUTF8.h" />
+    <ClInclude Include="..\..\lsMisc\browseFolder.h" />
+    <ClInclude Include="..\..\lsMisc\CommandLineParser.h" />
+    <ClInclude Include="..\..\lsMisc\cppclr\clrString.h" />
+    <ClInclude Include="..\..\lsMisc\IsFilenamable.h" />
+    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
+    <ClInclude Include="..\..\lsMisc\UrlEncode.h" />
+    <ClInclude Include="..\..\lsMisc\UTF16toUTF8.h" />
     <ClInclude Include="debugflags.h" />
     <ClInclude Include="FormMain.h">
       <FileType>CppForm</FileType>

@@ -37,4 +37,6 @@ using namespace System::Security::Permissions;
 
 [assembly:CLSCompliantAttribute(true)];
 
+#if _MSC_VER < 1800
 [assembly:SecurityPermission(SecurityAction::RequestMinimum, UnmanagedCode = true)];
+#endif

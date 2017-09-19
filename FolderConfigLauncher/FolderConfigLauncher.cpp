@@ -1,4 +1,3 @@
-// FolderConfigLauncher.cpp : メイン プロジェクト ファイルです。
 
 #include "stdafx.h"
 
