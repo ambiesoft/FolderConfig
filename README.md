@@ -35,4 +35,4 @@ PathType=1
 [TestWrite]
 TID=291652156
 ```
-*PathType=1* means the user choose *System defined user folder (local)*, the application can read this value by calling defined in *Ambiesoft.FolderConfigHelper.dll*, or call win32's *GetPrivateProfileString()*. In latter case, you must be careful for character encoding, *folder.ini* is encoded in UTF8 but win32api does not.
+*PathType=1* means the user choose *System defined user folder (local)*, the application can read this value by calling defined in *Ambiesoft.FolderConfigHelper.dll*, or call win32's *GetPrivateProfileString()*. In latter case, you must be careful for character encoding, *folder.ini* is encoded in UTF8 but win32api does not treat text as UTF8.
