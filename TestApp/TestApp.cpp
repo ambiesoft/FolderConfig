@@ -1,7 +1,9 @@
 // TestApp.cpp : main project file.
 
 #include "stdafx.h"
-#include <Winerror.h>
+
+#include "../../lsMisc/stdwin32/stdwin32.h"
+#include "../../lsMisc/UTF16toUTF8.h"
 
 using namespace System;
 using namespace System::IO;
@@ -9,6 +11,9 @@ using namespace System::Reflection;
 using namespace System::Diagnostics;
 
 using namespace Ambiesoft;
+using namespace stdwin32;
+
+using std::wstring;
 
 int main(array<System::String ^> ^args)
 {
@@ -49,6 +54,19 @@ int main(array<System::String ^> ^args)
 
 		String^ ninjaPath = FolderConfigHelper::GetConfigPath("Ninja");
 		Console::WriteLine("Ninja path={0}", ninjaPath);
+
+		wstring inipath = stdCombinePath(stdGetParentDirectory(stdGetModuleFileName()), L"folder.ini");
+		int pathtype = GetPrivateProfileInt(L"Ninja", L"PathType", 0, inipath.c_str());
+		Console::WriteLine("Win32PathType={0}", pathtype);
+		WCHAR szTw[MAX_PATH];
+		GetPrivateProfileString(L"Ninja", L"Folder", NULL, szTw, _countof(szTw), inipath.c_str());
+		Console::WriteLine("Win32Path={0}", gcnew String(szTw));
+
+		char szTa[MAX_PATH];
+		GetPrivateProfileStringA("Ninja", "Folder", NULL, szTa, _countof(szTw), "C:\\Linkout\\FolderConfigD\\folder.ini");
+		Console::WriteLine("Win32APath={0}", gcnew String(szTa));
+		wstring ws;
+		UTF8toUTF16((LPBYTE)szTa,ws);
 	}
 	catch(Exception^ ex)
 	{

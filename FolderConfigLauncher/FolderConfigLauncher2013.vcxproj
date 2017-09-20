@@ -47,11 +47,13 @@
     <OutDir>C:\Linkout\FolderConfigD\</OutDir>
     <IntDir>$(Configuration)\2013\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>FolderConfig</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>C:\Linkout\FolderConfig\</OutDir>
     <IntDir>$(Configuration)\2013\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>FolderConfig</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

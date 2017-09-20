@@ -44,7 +44,7 @@
     <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(ProjectDir)Build\$(Configuration)\2013\</OutDir>
+    <OutDir>C:\Linkout\FolderConfigD\</OutDir>
     <IntDir>$(Configuration)\2013\</IntDir>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
@@ -55,8 +55,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
-      <Command>xcopy /E /I /H /R /Y "C:\Linkout\FolderConfig\*" "$(TargetDir)"
-copy "$(ProjectDir)\FolderConfig.ini" "$(TargetDir)"
+      <Command>REM xcopy /E /I /H /R /Y "C:\Linkout\FolderConfig\*" "$(TargetDir)"
+REM copy "$(ProjectDir)\FolderConfig.ini" "$(TargetDir)"
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -103,6 +103,7 @@ copy "$(ProjectDir)\FolderConfig.ini" "$(TargetDir)"
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -111,6 +112,7 @@ copy "$(ProjectDir)\FolderConfig.ini" "$(TargetDir)"
     <ClCompile Include="TestApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

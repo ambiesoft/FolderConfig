@@ -39,26 +39,26 @@
     <ClCompile Include="FormMainInitializeComponent.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\browseFolder.cpp">
-      <Filter>2 Source Files\lsMisc</Filter>
+    <ClCompile Include="..\..\lsMisc\browseFolder.cpp">
+      <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\cppclr\clrString.cpp">
-      <Filter>2 Source Files\lsMisc</Filter>
+    <ClCompile Include="..\..\lsMisc\CommandLineParser.cpp">
+      <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\CommandLineParser.cpp">
-      <Filter>2 Source Files\lsMisc</Filter>
+    <ClCompile Include="..\..\lsMisc\cppclr\clrString.cpp">
+      <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\IsFilenamable.cpp">
-      <Filter>2 Source Files\lsMisc</Filter>
+    <ClCompile Include="..\..\lsMisc\IsFilenamable.cpp">
+      <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\stdwin32\stdwin32.cpp">
-      <Filter>2 Source Files\lsMisc</Filter>
+    <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp">
+      <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\UrlEncode.cpp">
-      <Filter>2 Source Files\lsMisc</Filter>
+    <ClCompile Include="..\..\lsMisc\UrlEncode.cpp">
+      <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lsMisc\UTF16toUTF8.cpp">
-      <Filter>2 Source Files\lsMisc</Filter>
+    <ClCompile Include="..\..\lsMisc\UTF16toUTF8.cpp">
+      <Filter>2 Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,31 +74,31 @@
     <ClInclude Include="FormMain.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lsMisc\CommandLineParser.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lsMisc\IsFilenamable.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lsMisc\stdwin32\stdwin32.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lsMisc\browseFolder.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lsMisc\cppclr\clrString.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lsMisc\UrlEncode.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lsMisc\UTF16toUTF8.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ResUtil.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="debugflags.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\browseFolder.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\CommandLineParser.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\cppclr\clrString.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\IsFilenamable.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\UrlEncode.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\UTF16toUTF8.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

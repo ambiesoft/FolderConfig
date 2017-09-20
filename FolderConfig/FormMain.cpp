@@ -91,7 +91,7 @@ namespace Ambiesoft { namespace FolderConfig {
 
 
 		this->Text = String::IsNullOrEmpty(Settings::Title) ? 
-			ProductName + L" | " + Settings::AppName :
+			ProductName + L" | " + Settings::AppName + L" | " + Settings::Section:
 		Settings::Title;
 	}
 

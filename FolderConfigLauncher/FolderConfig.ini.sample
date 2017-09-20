@@ -2,5 +2,4 @@
 appname=MyApp
 creator=Ambiesoft
 defaultpathtype=0
-defaultpath=conf
-culture=ja-JP
+defaultpath0=conf

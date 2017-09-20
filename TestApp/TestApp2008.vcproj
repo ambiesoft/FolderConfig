@@ -18,7 +18,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ProjectDir)Build\$(ConfigurationName)"
+			OutputDirectory="C:\Linkout\FolderConfigD\"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -212,7 +212,15 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\..\lsMisc\stdwin32\stdwin32.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\TestApp.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\lsMisc\UTF16toUTF8.cpp"
 				>
 			</File>
 		</Filter>
@@ -227,6 +235,14 @@
 			</File>
 			<File
 				RelativePath=".\stdafx.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\lsMisc\stdwin32\stdwin32.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\lsMisc\UTF16toUTF8.h"
 				>
 			</File>
 		</Filter>
