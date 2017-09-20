@@ -97,7 +97,7 @@ namespace Ambiesoft
             return null;
         }
 
-        static string GetConfigPath(string section)
+        public static string GetConfigPath(string section)
         {
             string ret = GetConfigPathImpl(section);
             if (string.IsNullOrEmpty(ret))

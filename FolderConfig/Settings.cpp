@@ -128,7 +128,7 @@ namespace Ambiesoft {
 				if (opSection.getValueCount() > 1)
 				{
 					ShowError(
-						I18N(String::Format(L"{0} appnames specified. Only one acceptable.",
+						I18N(String::Format(L"{0} sections specified. Only one acceptable.",
 						opSection.getValueCount())));
 					return false;
 				}
