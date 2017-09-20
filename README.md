@@ -9,4 +9,16 @@ Download binaries from https://github.com/erasoni/FolderConfig/releases.
 * Rename *FolderConfig.ini.sample* to *FolderConfig.ini* and edit it. 
 
 ## FolderConfig.ini
-This file holds default values. Application creator should complete this file in accordance with its traits. It should not be editted during runtime of the application. *FolderConfig.ini* looks like follows.
+This file holds default values. Application creator should completes this file in accordance with its traits. It should not be editted during runtime of the application. *FolderConfig.ini* looks like follows.
+
+```ini
+[Main]
+appname=MyApp
+creator=Ambiesoft
+defaultpathtype=0
+defaultpath0=conf
+```
+
+If you lanuch *FolderConfig.exe* with *FolderConfig.ini* above, you will see follwing the setting dialog.
+
+
