@@ -1,2 +1,5 @@
+2017/9/21 v1.1
+Fix wrong FolderConfig.ini.sample
+
 2017/9/15 v1.0
 Publish
