@@ -22,7 +22,7 @@ int main(array<System::String ^> ^args)
 		String^ path = FolderConfigHelper::GetConfigPath();
 
 		Console::WriteLine(String::Format("path is \"{0}\".",path));
-		Console::WriteLine(String::Format("Path is acceesable...? {0}", FolderConfigHelper::IsFolderAccessable(path)));
+		Console::WriteLine(String::Format("Path is acceesable...? {0}", FolderConfigHelper::IsFolderAccessible(path)));
 
 
 		// try 2nd path
@@ -64,9 +64,10 @@ int main(array<System::String ^> ^args)
 
 		char szTa[MAX_PATH];
 		GetPrivateProfileStringA("Ninja", "Folder", NULL, szTa, _countof(szTw), "C:\\Linkout\\FolderConfigD\\folder.ini");
-		Console::WriteLine("Win32APath={0}", gcnew String(szTa));
+		Console::WriteLine("Win32APathA={0}", gcnew String(szTa));
 		wstring ws;
 		UTF8toUTF16((LPBYTE)szTa,ws);
+		Console::WriteLine("Win32APathAUTF8toUTF16={0}", gcnew String(ws.c_str()));
 	}
 	catch(Exception^ ex)
 	{

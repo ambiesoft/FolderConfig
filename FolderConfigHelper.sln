@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual C# Express 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderConfigHelper", "FolderConfigHelper\FolderConfigHelper.2008.csproj", "{F29EE974-BA47-4060-866A-98E9F7525962}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderConfigHelper.2008", "FolderConfigHelper\FolderConfigHelper.2008.csproj", "{F29EE974-BA47-4060-866A-98E9F7525962}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAppBasic", "TestAppBasic\TestAppBasic.csproj", "{4671D827-53A8-47B6-84D3-CFB7A3E427E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{F29EE974-BA47-4060-866A-98E9F7525962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F29EE974-BA47-4060-866A-98E9F7525962}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F29EE974-BA47-4060-866A-98E9F7525962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4671D827-53A8-47B6-84D3-CFB7A3E427E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4671D827-53A8-47B6-84D3-CFB7A3E427E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4671D827-53A8-47B6-84D3-CFB7A3E427E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4671D827-53A8-47B6-84D3-CFB7A3E427E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -24,8 +24,8 @@
 #pragma once
 
 #ifdef _DEBUG
-#define _DEBUG_RESOURCE
-#define _DEBUG_RETVAL
+//#define _DEBUG_RESOURCE
+//#define _DEBUG_RETVAL
 #endif // _DEBUG
 
 
