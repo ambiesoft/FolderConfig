@@ -1,3 +1,6 @@
+2017/9/23 v1.3
+Forgot push some
+
 2017/9/22 v1.2
 Add TestAppBasic
 Add Some functions to helper
