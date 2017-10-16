@@ -85,7 +85,7 @@ namespace Ambiesoft { namespace FolderConfig {
 		}
 		catch(Exception^ e)
 		{
-			MessageBox::Show(L"error : " + e->Message);
+			Ambiesoft::CppUtils::CenteredMessageBox(L"error : " + e->Message);
 			radioUnderThis->Checked = true;
 		}
 
@@ -145,7 +145,7 @@ namespace Ambiesoft { namespace FolderConfig {
 		}
 		catch(Exception^ e)
 		{
-			MessageBox::Show(L"error : " + e->Message);
+			Ambiesoft::CppUtils::CenteredMessageBox(L"error : " + e->Message);
 			radioUnderThis->Checked = true;
 		}
 		textFolder->Text = path;
@@ -193,7 +193,7 @@ namespace Ambiesoft { namespace FolderConfig {
 			if ( String::IsNullOrEmpty(textFolder->Text) )
 			{
 				e->Cancel = true;
-				MessageBox::Show(I18N(L"Folder must not be empty."),
+				Ambiesoft::CppUtils::CenteredMessageBox(I18N(L"Folder must not be empty."),
 					Settings::Title,
 					MessageBoxButtons::OK,
 					MessageBoxIcon::Exclamation);
@@ -217,7 +217,8 @@ namespace Ambiesoft { namespace FolderConfig {
 
 			if ( !ok )
 			{
-				MessageBox::Show(this,
+				Ambiesoft::CppUtils::CenteredMessageBox(
+					this,
 					I18N(ResUtil::RES_FOLDER_SETTINGS_SAVEFAILED), 
 					ProductName,
 					MessageBoxButtons::OK,
@@ -225,7 +226,8 @@ namespace Ambiesoft { namespace FolderConfig {
 			}
 			else
 			{
-				MessageBox::Show(this,
+				Ambiesoft::CppUtils::CenteredMessageBox(
+					this,
 					I18N(ResUtil::RES_FOLDER_SETTINGS_SAVED),
 					ProductName,
 					MessageBoxButtons::OK,
@@ -253,7 +255,7 @@ namespace Ambiesoft { namespace FolderConfig {
 
 		if ( !ok )
 		{
-			MessageBox::Show(this, 
+			Ambiesoft::CppUtils::CenteredMessageBox(this, 
 				I18N(ResUtil:: RES_FOLDER_SETTINGS_SAVEFAILED),
 				ProductName,
 				MessageBoxButtons::OK,
@@ -261,7 +263,7 @@ namespace Ambiesoft { namespace FolderConfig {
 		}
 		else
 		{
-			MessageBox::Show(this,
+			Ambiesoft::CppUtils::CenteredMessageBox(this,
 				I18N(ResUtil:: RES_FOLDER_SETTINGS_SAVED),
 				ProductName,
 				MessageBoxButtons::OK,

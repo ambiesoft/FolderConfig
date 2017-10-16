@@ -144,7 +144,7 @@ int libmain(array<System::String ^> ^args)
 		}
 		catch(System::Exception^ ex)
 		{
-			MessageBox::Show(
+			Ambiesoft::CppUtils::CenteredMessageBox(
 				ex->Message,
 				Settings::Title,
 				System::Windows::Forms::MessageBoxButtons::OK,
@@ -182,7 +182,7 @@ public:
 		sb.AppendLine("MyError: " + (code>>1));
 		sb.AppendLine("OkCancel: " + ((ret&1)?"OK":"Cancel"));
 		DTRACE_RETVAL(sb.ToString());
-		MessageBox::Show(sb.ToString(), "_DEBUG_RETVAL" + (PowWrite::IsAdmin()?"(Admin)":"(Normal)"));
+		Ambiesoft::CppUtils::CenteredMessageBox(sb.ToString(), "_DEBUG_RETVAL" + (PowWrite::IsAdmin()?"(Admin)":"(Normal)"));
 #endif
 		return ret;
 	}

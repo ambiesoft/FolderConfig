@@ -64,14 +64,14 @@ namespace Ambiesoft {
 
 		void ShowError(String^ s)
 		{
-			MessageBox::Show(s + "\r\n\r\n" + getHelpMessage(),
+			Ambiesoft::CppUtils::CenteredMessageBox(s + "\r\n\r\n" + getHelpMessage(),
 				Settings::ProductName,
 				MessageBoxButtons::OK,
 				MessageBoxIcon::Error);
 		}
 		void Alert(String^ msg)
 		{
-			MessageBox::Show(msg,
+			Ambiesoft::CppUtils::CenteredMessageBox(msg,
 				Settings::ProductName,
 				MessageBoxButtons::OK,
 				MessageBoxIcon::Warning);
@@ -185,7 +185,7 @@ namespace Ambiesoft {
 
 			if(opHelp.hadOption())
 			{
-				MessageBox::Show(getHelpMessage(),
+				Ambiesoft::CppUtils::CenteredMessageBox(getHelpMessage(),
 					ProductName,
 					MessageBoxButtons::OK,
 					MessageBoxIcon::Information
