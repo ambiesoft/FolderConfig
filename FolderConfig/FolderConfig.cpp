@@ -166,6 +166,7 @@ int libmain(array<System::String ^> ^args)
 
 public ref struct Program
 {
+public:
 	static int main(array<System::String ^> ^args)
 	{
 		int ret = libmain(args);

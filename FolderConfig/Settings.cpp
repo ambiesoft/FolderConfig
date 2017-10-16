@@ -82,7 +82,7 @@ namespace Ambiesoft {
 		}
 		bool Settings::init()
 		{
-			CCommandLineParser parser(CaseFlag_CaseInsensitive);
+			CCommandLineParser parser(CaseFlags_Insensitive);
 			COption opTitle(L"/title", 1);
 			parser.AddOption(&opTitle);
 
