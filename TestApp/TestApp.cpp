@@ -4,6 +4,7 @@
 
 #include "../../lsMisc/stdwin32/stdwin32.h"
 #include "../../lsMisc/UTF16toUTF8.h"
+#include "../../lsMisc/stdosd/stdosd.h"
 
 using namespace System;
 using namespace System::IO;
@@ -11,6 +12,7 @@ using namespace System::Reflection;
 using namespace System::Diagnostics;
 
 using namespace Ambiesoft;
+using namespace Ambiesoft::stdosd;
 using namespace stdwin32;
 
 using std::wstring;

@@ -26,6 +26,7 @@
 
 #include "../../lsMisc/CommandLineParser.h"
 #include "../../lsMisc/stdwin32/stdwin32.h"
+#include "../../lsMisc/stdosd/stdosd.h"
 
 using std::wstring;
 
@@ -33,6 +34,7 @@ namespace Ambiesoft {
 	namespace FolderConfig {
 
 		using namespace stdwin32;
+		using namespace Ambiesoft::stdosd;
 
 		using namespace System::IO;
 		using namespace System::Text;
@@ -83,34 +85,34 @@ namespace Ambiesoft {
 		bool Settings::init()
 		{
 			CCommandLineParser parser(CaseFlags_Insensitive);
-			COption opTitle(L"/title", 1);
+			COption opTitle(L"/title", ExactCount::Exact_1);
 			parser.AddOption(&opTitle);
 
 			//COption opIniFile(L"/inifile", 1);
 			//parser.AddOption(&opIniFile);
 
-			COption opDefaultPathtype(L"/defaultpathtype", 1);
+			COption opDefaultPathtype(L"/defaultpathtype", ExactCount::Exact_1);
 			parser.AddOption(&opDefaultPathtype);
 
-			COption opDefaultPath0(L"/defaultpath0", 1);
+			COption opDefaultPath0(L"/defaultpath0", ExactCount::Exact_1);
 			parser.AddOption(&opDefaultPath0);
 
-			COption opDefaultPath3(L"/defaultpath3", 1);
+			COption opDefaultPath3(L"/defaultpath3", ExactCount::Exact_1);
 			parser.AddOption(&opDefaultPath3);
 
-			COption opCreator(L"/creator", 1);
+			COption opCreator(L"/creator", ExactCount::Exact_1);
 			parser.AddOption(&opCreator);
 
-			COption opAppName(L"/appname", 1);
+			COption opAppName(L"/appname", ExactCount::Exact_1);
 			parser.AddOption(&opAppName);
 
-			COption opSection(L"/section", 1);
+			COption opSection(L"/section", ExactCount::Exact_1);
 			parser.AddOption(&opSection);
 
-			COption opCulture(L"/culture", 1);
+			COption opCulture(L"/culture", ExactCount::Exact_1);
 			parser.AddOption(&opCulture);
 
-			COption opHelp(L"/h", L"/?");
+			COption opHelp(L"/h", L"/?", 0);
 			parser.AddOption(&opHelp);
 
 

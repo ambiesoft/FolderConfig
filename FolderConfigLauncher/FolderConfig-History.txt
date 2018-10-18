@@ -1,3 +1,6 @@
+2018/10/19 v1.4.1
+HighDPI support
+
 2017/9/23 v1.3
 Forgot push some
 

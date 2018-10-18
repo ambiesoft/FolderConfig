@@ -24,12 +24,18 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lsMisc\HighDPI.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\HighDPI.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

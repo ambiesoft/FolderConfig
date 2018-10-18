@@ -1,1 +1,1 @@
-See https://github.com/erasoni/FolderConfig
+See https://github.com/ambiesoft/FolderConfig

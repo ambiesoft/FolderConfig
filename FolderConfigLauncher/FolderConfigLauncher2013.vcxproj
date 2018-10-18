@@ -133,6 +133,7 @@ cmd /C copyv "$(ProjectDir)FolderConfig-ReadMe.txt" "$(TargetDir)"
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\lsMisc\HighDPI.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="FolderConfigLauncher.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -141,6 +142,7 @@ cmd /C copyv "$(ProjectDir)FolderConfig-ReadMe.txt" "$(TargetDir)"
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\lsMisc\HighDPI.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

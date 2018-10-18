@@ -11,7 +11,7 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyConfigurationAttribute("")];
 [assembly:AssemblyCompanyAttribute("")];
 [assembly:AssemblyProductAttribute("FolderConfigLauncher")];
-[assembly:AssemblyCopyrightAttribute("Copyright (c)  2017")];
+[assembly:AssemblyCopyrightAttribute("Copyright (c)  2018")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];
 
@@ -23,7 +23,7 @@ using namespace System::Security::Permissions;
 //
 
 
-[assembly:AssemblyVersionAttribute("1.3.*")];
+[assembly:AssemblyVersionAttribute("1.4.1.*")];
 
 
 [assembly:ComVisible(false)];
