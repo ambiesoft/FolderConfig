@@ -56,6 +56,7 @@
     <IntDir>$(Configuration)\2013\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetName>FolderConfig</TargetName>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
