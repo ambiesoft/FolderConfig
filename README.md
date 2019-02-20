@@ -2,7 +2,7 @@
 FolderConfig can make a user of the application choose a folder they want to save app's settings. Application creator does not need to think about where settings are to be saved.
 
 # Download
-Download binaries from https://github.com/erasoni/FolderConfig/releases.
+Download binaries from https://github.com/ambiesoft/FolderConfig/releases.
 
 # How to deploy
 * Extract *FolderConfig-x.x.exe* to your application folder. Place *FolderConfig.exe* in the same directory of your application's main executable resides.
