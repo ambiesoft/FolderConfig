@@ -46,14 +46,14 @@
     <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>C:\Linkout\FolderConfigD\</OutDir>
-    <IntDir>$(Configuration)\2013\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\FolderConfig\</OutDir>
+    <IntDir>$(Configuration)\$(PlatformToolset)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>FolderConfig</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>C:\Linkout\FolderConfig\</OutDir>
-    <IntDir>$(Configuration)\2013\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\FolderConfig\</OutDir>
+    <IntDir>$(Configuration)\$(PlatformToolset)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetName>FolderConfig</TargetName>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>

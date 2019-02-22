@@ -47,16 +47,16 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ReferencePath>C:\Linkout\DNAssembly;$(ReferencePath)</ReferencePath>
-    <OutDir>$(SolutionDir)$(Configuration)\2013\</OutDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\FolderConfig\</OutDir>
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>$(Configuration)\2013\</IntDir>
+    <IntDir>$(Configuration)\$(PlatformToolset)\</IntDir>
     <TargetName>$(RootNamespace)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ReferencePath>C:\Linkout\DNAssembly;$(ReferencePath)</ReferencePath>
-    <OutDir>C:\Linkout\FolderConfig\</OutDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\FolderConfig\</OutDir>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
-    <IntDir>$(Configuration)\2013\</IntDir>
+    <IntDir>$(Configuration)\$(PlatformToolset)\</IntDir>
     <TargetName>$(RootNamespace)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
