@@ -384,10 +384,10 @@ namespace Ambiesoft {
 		String^ Settings::DefaultPath0::get()
 		{
 			if (String::IsNullOrEmpty(defaultpath0_))
-				return toCLR(stdGetParentDirectory(stdGetModuleFileName()));
+				return toCLR(stdGetParentDirectory(stdGetModuleFileName<wchar_t>()));
 
 			if (!stdIsFullPath(toLPCW(defaultpath0_)))
-				return toCLR(stdCombinePath(stdGetParentDirectory(stdGetModuleFileName()), toWstring(defaultpath0_)));
+				return toCLR(stdCombinePath(stdGetParentDirectory(stdGetModuleFileName<wchar_t>()), toWstring(defaultpath0_)));
 
 			return defaultpath0_;
 		}

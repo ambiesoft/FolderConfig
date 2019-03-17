@@ -32,7 +32,8 @@ using System.IO;
 using System.Diagnostics;
 
 using Ambiesoft;
-namespace TestAppBasic
+
+namespace TestAppUseHelper
 {
     static class Program
     {

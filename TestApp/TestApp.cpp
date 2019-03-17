@@ -57,7 +57,7 @@ int main(array<System::String ^> ^args)
 		String^ ninjaPath = FolderConfigHelper::GetConfigPath("Ninja");
 		Console::WriteLine("Ninja path={0}", ninjaPath);
 
-		wstring inipath = stdCombinePath(stdGetParentDirectory(stdGetModuleFileName()), L"folder.ini");
+		wstring inipath = stdCombinePath(stdGetParentDirectory(stdGetModuleFileName<wchar_t>()), L"folder.ini");
 		int pathtype = GetPrivateProfileInt(L"Ninja", L"PathType", 0, inipath.c_str());
 		Console::WriteLine("Win32PathType={0}", pathtype);
 		WCHAR szTw[MAX_PATH];
@@ -67,8 +67,8 @@ int main(array<System::String ^> ^args)
 		char szTa[MAX_PATH];
 		GetPrivateProfileStringA("Ninja", "Folder", NULL, szTa, _countof(szTw), "C:\\Linkout\\FolderConfigD\\folder.ini");
 		Console::WriteLine("Win32APathA={0}", gcnew String(szTa));
-		wstring ws;
-		UTF8toUTF16((LPBYTE)szTa,ws);
+		wstring ws = toStdWstringFromUtf8(szTa);
+		// UTF8toUTF16((LPBYTE)szTa,ws);
 		Console::WriteLine("Win32APathAUTF8toUTF16={0}", gcnew String(ws.c_str()));
 	}
 	catch(Exception^ ex)

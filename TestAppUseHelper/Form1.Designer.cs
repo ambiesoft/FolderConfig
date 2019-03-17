@@ -1,4 +1,4 @@
-﻿namespace TestAppBasic
+﻿namespace TestAppUseHelper
 {
     partial class Form1
     {

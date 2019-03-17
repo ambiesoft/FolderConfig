@@ -33,7 +33,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace TestAppBasic
+namespace TestAppUseHelper
 {
     public partial class Form1 : Form
     {
