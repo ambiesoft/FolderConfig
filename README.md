@@ -1,4 +1,4 @@
-# FolderConfig
+﻿# FolderConfig
 FolderConfig can make a user of the application choose a folder they want to save app's settings. Application creator does not need to think about where settings are to be saved.
 
 # Download
@@ -38,4 +38,5 @@ TID=291652156
 *PathType=1* means the user choose *System defined user folder (local)*, the application can read this value by calling *GetConfigPath()* defined in *Ambiesoft.FolderConfigHelper.dll*, or call win32's *GetPrivateProfileString()*. In latter case, you must be careful for character encoding, *folder.ini* is encoded in UTF8 but win32api does not treat text as UTF8.
 
 # typical startup code of an application
-see *TestAppBasic* in *FolderConfigHelper.sln*.
+See *TestAppUseHelper* and *TestAppCs* for C# and *TestAppCpp* for C++.
+
