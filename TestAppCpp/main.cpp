@@ -43,11 +43,7 @@ int __stdcall wWinMain(
 	wstringstream ss;
 
 	int pathType = -1;
-	if (!Profile::GetInt("Main", "PathType", 0, pathType, szInifile))
-	{
-		MessageBox(nullptr, L"Error", nullptr, MB_ICONERROR);
-		return 1;
-	}
+	Profile::GetInt("Main", "PathType", 0, pathType, szInifile);
 
 	ss << L"PathType=" << pathType << endl;
 

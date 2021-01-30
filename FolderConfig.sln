@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FolderConfig", "FolderConfig\FolderConfig.vcxproj", "{F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FolderConfigLauncher", "FolderConfigLauncher\FolderConfigLauncher.vcxproj", "{BD8E5B99-28A1-4DFF-AA09-C1CC70AB6029}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestApp", "TestApp\TestApp2013.vcxproj", "{01EE1117-83C7-45A5-BE62-8E2249D6C781}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestApp", "TestApp\TestApp.vcxproj", "{01EE1117-83C7-45A5-BE62-8E2249D6C781}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderConfigHelper.2013", "FolderConfigHelper\FolderConfigHelper.csproj", "{F29EE974-BA47-4060-866A-98E9F7525962}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderConfigHelper", "FolderConfigHelper\FolderConfigHelper.csproj", "{F29EE974-BA47-4060-866A-98E9F7525962}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestAppCpp", "TestAppCpp\TestAppCpp.vcxproj", "{EC2A8AEF-668C-486A-9ACE-A6534C11EAB6}"
 EndProject

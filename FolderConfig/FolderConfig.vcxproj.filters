@@ -122,9 +122,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="FormMain.ja-JP.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>

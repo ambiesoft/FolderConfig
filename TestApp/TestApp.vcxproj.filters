@@ -67,7 +67,4 @@
   <ItemGroup>
     <None Include="FolderConfig.ini" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
 </Project>
