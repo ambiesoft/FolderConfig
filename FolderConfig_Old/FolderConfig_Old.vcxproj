@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>FolderConfig</ProjectName>
+    <ProjectName>FolderConfig_Old</ProjectName>
     <ProjectGuid>{F6B6CE6B-39FD-41B2-98A6-B2CCC47660A8}</ProjectGuid>
     <RootNamespace>Ambiesoft.FolderConfig</RootNamespace>
     <Keyword>ManagedCProj</Keyword>

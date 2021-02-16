@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>FolderConfigLauncher</ProjectName>
+    <ProjectName>FolderConfigLauncher_Old</ProjectName>
     <ProjectGuid>{BD8E5B99-28A1-4DFF-AA09-C1CC70AB6029}</ProjectGuid>
     <RootNamespace>FolderConfigLauncher</RootNamespace>
     <Keyword>ManagedCProj</Keyword>
