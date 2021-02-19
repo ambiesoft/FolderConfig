@@ -14,12 +14,12 @@ namespace FolderConfigLauncher
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static int Main(string[] args)
         {
             if(Environment.OSVersion.Version.Major >= 6)
                 SetProcessDPIAware();
 
-            return Ambiesoft.fo
+            return Ambiesoft.FolderConfig.Program.libmain(args);
         }
     }
 }

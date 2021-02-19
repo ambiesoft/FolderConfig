@@ -126,7 +126,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 208</value>
+    <value>289, 226</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 25</value>
@@ -157,7 +157,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 208</value>
+    <value>189, 226</value>
   </data>
   <data name="btnOK.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 25</value>
@@ -190,7 +190,7 @@
     <value>6, 66</value>
   </data>
   <data name="radioRoaming.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 17</value>
+    <value>238, 19</value>
   </data>
   <data name="radioRoaming.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -220,7 +220,7 @@
     <value>6, 20</value>
   </data>
   <data name="radioUnderThis.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 17</value>
+    <value>122, 19</value>
   </data>
   <data name="radioUnderThis.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -250,7 +250,7 @@
     <value>6, 42</value>
   </data>
   <data name="radioLocal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 17</value>
+    <value>216, 19</value>
   </data>
   <data name="radioLocal.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -280,7 +280,7 @@
     <value>6, 90</value>
   </data>
   <data name="radioUserDefine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 17</value>
+    <value>135, 19</value>
   </data>
   <data name="radioUserDefine.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -303,50 +303,14 @@
   <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="&gt;&gt;btnBrowse.Name" xml:space="preserve">
-    <value>btnBrowse</value>
-  </data>
-  <data name="&gt;&gt;btnBrowse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnBrowse.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;btnBrowse.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>338, 114</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Choose folder where configs will be saved</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="btnBrowse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 89</value>
+    <value>147, 90</value>
   </data>
   <data name="btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 20</value>
+    <value>27, 19</value>
   </data>
   <data name="btnBrowse.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -366,6 +330,30 @@
   <data name="&gt;&gt;btnBrowse.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>367, 114</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Choose folder where configs will be saved</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="textFolder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -373,7 +361,7 @@
     <value>16, 155</value>
   </data>
   <data name="textFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>338, 20</value>
+    <value>367, 23</value>
   </data>
   <data name="textFolder.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -400,7 +388,7 @@
     <value>14, 139</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 13</value>
+    <value>142, 15</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -430,7 +418,7 @@
     <value>14, 179</value>
   </data>
   <data name="labelAttention.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 13</value>
+    <value>284, 15</value>
   </data>
   <data name="labelAttention.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -466,10 +454,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnReverToDefault.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 208</value>
+    <value>12, 226</value>
   </data>
   <data name="btnReverToDefault.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 25</value>
+    <value>132, 25</value>
   </data>
   <data name="btnReverToDefault.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -496,10 +484,13 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>366, 245</value>
+    <value>395, 263</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Meiryo UI, 9pt</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2340,6 +2331,9 @@
         TWdhGZ21tzLWFC51TbmJo1ycZDnI68SY4SJmiIUtA1BuwEEAKkgOAsXXmVGVCoTAiqAVQKuFnBLLDjHO
         SdK2WPCEiN0ZstLankqeHtk8+PTbP+85f186/T+RS+PWAT3O+gAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>411, 302</value>
   </data>
   <data name="&gt;&gt;folbrow.Name" xml:space="preserve">
     <value>folbrow</value>

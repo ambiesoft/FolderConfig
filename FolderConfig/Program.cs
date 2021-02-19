@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace FolderConfig
+namespace Ambiesoft.FolderConfig
 {
 	class PowWrite
 	{
 		const string CUSTOMER_TID_APP = "TestWrite";
 		const string CUSTOMER_TID_KEY = "TID";
 
-		static bool IsAdmin()
+		public static bool IsAdmin()
 		{
 			try
 			{
@@ -23,7 +24,7 @@ namespace FolderConfig
 			}
 			return false;
 		}
-		static bool do_c_write(string iniFileName)
+		public static bool do_c_write(string iniFileName)
 		{
 			int val = System.Environment.TickCount;
 
@@ -48,7 +49,7 @@ namespace FolderConfig
 			return val == readv;
 		}
 
-		static string getArgForCreate(string[] args)
+		public static string getArgForCreate(string[] args)
 		{
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 			foreach (string s in args)
@@ -76,7 +77,7 @@ namespace FolderConfig
 
 	public static class Program
     {
-		static int MakeRetval(bool success, ushort errorCode, bool okcancel)
+		static int MakeRetval(bool success, ErrorReturnValue errorCode, bool okcancel)
 		{
 			return (int)(
 					((uint)(success ? 0 : 1)) << 31 |
@@ -86,55 +87,58 @@ namespace FolderConfig
 			);
 		}
 
-		static int libmain(string[] args)
+		public static int libmain(string[] args)
 		{
-			if (!Settings::init())
+			if (!Settings.init(args))
 			{
-				return MakeRetval(false, ErrorReturn_SettingsInitFailed, false);
+				return MakeRetval(false, ErrorReturnValue.ErrorReturn_SettingsInitFailed, false);
 			}
 
-			if (!PowWrite::IsAdmin() && !PowWrite::do_c_write(Settings::UserIniFullpath))
+			if (!PowWrite.IsAdmin() && !PowWrite.do_c_write(Settings.UserIniFullpath))
 			{
 				// could not write to inifile, launch me in higher priviledge
 				try
 				{
-					System::Diagnostics::ProcessStartInfo psi;
+					ProcessStartInfo psi = new ProcessStartInfo();
 					psi.UseShellExecute = true;
-					psi.WorkingDirectory = System::Environment::CurrentDirectory;
-					psi.FileName = Application::ExecutablePath;
-					psi.Arguments = PowWrite::getArgForCreate(args);
-					psi.Verb = L"runas";
-					Process ^ pro = Process::Start(% psi);
-					pro->WaitForExit();
+					psi.WorkingDirectory = System.Environment.CurrentDirectory;
+					psi.FileName = Application.ExecutablePath;
+					psi.Arguments = PowWrite.getArgForCreate(args);
+					psi.Verb = "runas";
+					Process pro = Process.Start(psi);
+					pro.WaitForExit();
 
-					DTRACE_RETVAL(pro->ExitCode);
-					return pro->ExitCode;
+					Debug.WriteLine(pro.ExitCode);
+					return pro.ExitCode;
 				}
-				catch (System::Exception^ex)
-		{
-					Ambiesoft::CppUtils::CenteredMessageBox(
-						ex->Message,
-						Settings::Title,
-						System::Windows::Forms::MessageBoxButtons::OK,
-						System::Windows::Forms::MessageBoxIcon::Error);
+				catch (Exception ex)
+				{
+					MessageBox.Show(
+						ex.Message,
+						Settings.Title,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Error);
 
-					return MakeRetval(false, ErrorReturn_RunAsFailed, false);
+					return MakeRetval(false, ErrorReturnValue.ErrorReturn_RunAsFailed, false);
 				}
-				}
-
-
-				Application::EnableVisualStyles();
-				Application::SetCompatibleTextRenderingDefault(false);
-
-				FormMain dlg;
-				System::Windows::Forms::DialogResult dr = dlg.ShowDialog();
-
-				return MakeRetval(true, ErrorReturn_NoError, dr != System::Windows::Forms::DialogResult::Cancel);
 			}
 
-			/// <summary>
-			/// The main entry point for the application.
-			/// </summary>
+
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+
+			using (FormMain dlg = new FormMain())
+			{
+				DialogResult dr = dlg.ShowDialog();
+
+				return MakeRetval(true, ErrorReturnValue.ErrorReturn_NoError,
+					dr != DialogResult.Cancel);
+			}
+		}
+		
+		/// <summary>
+		/// The main entry point for the application.
+		/// </summary>
 			[STAThread]
         public static void Main(string[] args)
         {

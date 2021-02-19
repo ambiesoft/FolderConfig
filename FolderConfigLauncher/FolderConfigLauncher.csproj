@@ -7,7 +7,7 @@
     <ProjectGuid>{4A4CC341-3F6D-44FC-8283-350B64DA2F72}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>FolderConfigLauncher</RootNamespace>
-    <AssemblyName>FolderConfigLauncher</AssemblyName>
+    <AssemblyName>FolderConfig</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -30,6 +30,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ambiesoft.AmbLib">
@@ -73,6 +76,7 @@
     <Content Include="FolderConfig-History.txt" />
     <Content Include="FolderConfig-License.txt" />
     <Content Include="FolderConfig-ReadMe.txt" />
+    <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FolderConfig\FolderConfig.csproj">
@@ -81,4 +85,11 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cmd /C copyv "$(ProjectDir)FolderConfig.ini.sample" "$(TargetDir)"
+cmd /C copyv "$(ProjectDir)FolderConfig-History.txt" "$(TargetDir)"
+cmd /C copyv "$(ProjectDir)FolderConfig-License.txt" "$(TargetDir)"
+cmd /C copyv "$(ProjectDir)FolderConfig-ReadMe.txt" "$(TargetDir)"
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>

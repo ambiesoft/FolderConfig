@@ -59,5 +59,176 @@ namespace Ambiesoft.FolderConfig.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} has wrong value..
+        /// </summary>
+        internal static string _0_HAS_WRONG_VALUE {
+            get {
+                return ResourceManager.GetString("_0_HAS_WRONG_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is set more than twice..
+        /// </summary>
+        internal static string _0_IS_SET_TWICE {
+            get {
+                return ResourceManager.GetString("_0_IS_SET_TWICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must not include {1}..
+        /// </summary>
+        internal static string _0_MUST_NOT_INCLUDE_1 {
+            get {
+                return ResourceManager.GetString("_0_MUST_NOT_INCLUDE_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appname must be specified..
+        /// </summary>
+        internal static string APPNAME_MUST_BE_SPECIFIED {
+            get {
+                return ResourceManager.GetString("APPNAME_MUST_BE_SPECIFIED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defaultpathtype must be 0,1,2 or 3..
+        /// </summary>
+        internal static string DEFAULTTYPE_MUST_BE_0123 {
+            get {
+                return ResourceManager.GetString("DEFAULTTYPE_MUST_BE_0123", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder must not be empty..
+        /// </summary>
+        internal static string FOLDER_MUST_NOT_BE_EMPTY {
+            get {
+                return ResourceManager.GetString("FOLDER_MUST_NOT_BE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save folder settings..
+        /// </summary>
+        internal static string FOLDER_SETTINGS_SAVEFAILED {
+            get {
+                return ResourceManager.GetString("FOLDER_SETTINGS_SAVEFAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Succeeded to save folder settings..
+        /// </summary>
+        internal static string FOLDER_SETTINGS_SAVEOK {
+            get {
+                return ResourceManager.GetString("FOLDER_SETTINGS_SAVEOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appname: App name used as subfolder of Creator..
+        /// </summary>
+        internal static string HELP_APPNAME {
+            get {
+                return ResourceManager.GetString("HELP_APPNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creator: Creator name used as subfolder of roaming or local folder..
+        /// </summary>
+        internal static string HELP_CREATOR {
+            get {
+                return ResourceManager.GetString("HELP_CREATOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Culture: Culture string, (ex) \&quot;ja-JP\&quot;..
+        /// </summary>
+        internal static string HELP_CULTURE {
+            get {
+                return ResourceManager.GetString("HELP_CULTURE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defaultpathtype: 0,1,2 or 3..
+        /// </summary>
+        internal static string HELP_DEFAULT_FILE {
+            get {
+                return ResourceManager.GetString("HELP_DEFAULT_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defaultpath0: Default relative path from exe-resident folder for pathtype of 0. (Default is Exe-resident folder).
+        /// </summary>
+        internal static string HELP_DEFAULT_PATH0 {
+            get {
+                return ResourceManager.GetString("HELP_DEFAULT_PATH0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defaultpath3: Default full path for pathytpe of 3..
+        /// </summary>
+        internal static string HELP_DEFAULT_PATH3 {
+            get {
+                return ResourceManager.GetString("HELP_DEFAULT_PATH3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inifile: filename user chosen data will be saved. (Default is folder.ini).
+        /// </summary>
+        internal static string HELP_INIFILE {
+            get {
+                return ResourceManager.GetString("HELP_INIFILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section: Section name of config. (Default is [Main]).
+        /// </summary>
+        internal static string HELP_SECTION_NAME_OF_CONFIG {
+            get {
+                return ResourceManager.GetString("HELP_SECTION_NAME_OF_CONFIG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title: Title shown in Titlebar..
+        /// </summary>
+        internal static string HELP_TITLE {
+            get {
+                return ResourceManager.GetString("HELP_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown option:.
+        /// </summary>
+        internal static string UNKNOWN_OPTION {
+            get {
+                return ResourceManager.GetString("UNKNOWN_OPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage.
+        /// </summary>
+        internal static string USAGE {
+            get {
+                return ResourceManager.GetString("USAGE", resourceCulture);
+            }
+        }
     }
 }

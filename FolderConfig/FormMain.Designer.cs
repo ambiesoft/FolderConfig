@@ -1,5 +1,5 @@
 ﻿
-namespace FolderConfig
+namespace Ambiesoft.FolderConfig
 {
     partial class FormMain
     {
@@ -66,6 +66,7 @@ namespace FolderConfig
             this.radioRoaming.Name = "radioRoaming";
             this.radioRoaming.TabStop = true;
             this.radioRoaming.UseVisualStyleBackColor = true;
+            this.radioRoaming.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
             // radioUnderThis
             // 
@@ -73,6 +74,7 @@ namespace FolderConfig
             this.radioUnderThis.Name = "radioUnderThis";
             this.radioUnderThis.TabStop = true;
             this.radioUnderThis.UseVisualStyleBackColor = true;
+            this.radioUnderThis.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
             // radioLocal
             // 
@@ -81,6 +83,7 @@ namespace FolderConfig
             this.radioLocal.TabStop = true;
             this.radioLocal.Tag = 1;
             this.radioLocal.UseVisualStyleBackColor = true;
+            this.radioLocal.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
             // radioUserDefine
             // 
@@ -88,6 +91,7 @@ namespace FolderConfig
             this.radioUserDefine.Name = "radioUserDefine";
             this.radioUserDefine.TabStop = true;
             this.radioUserDefine.UseVisualStyleBackColor = true;
+            this.radioUserDefine.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -105,6 +109,7 @@ namespace FolderConfig
             resources.ApplyResources(this.btnBrowse, "btnBrowse");
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // textFolder
             // 
@@ -131,12 +136,13 @@ namespace FolderConfig
             resources.ApplyResources(this.btnReverToDefault, "btnReverToDefault");
             this.btnReverToDefault.Name = "btnReverToDefault";
             this.btnReverToDefault.UseVisualStyleBackColor = true;
+            this.btnReverToDefault.Click += new System.EventHandler(this.btnReverToDefault_Click);
             // 
             // FormMain
             // 
             this.AcceptButton = this.btnOK;
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -145,10 +151,11 @@ namespace FolderConfig
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelAttention);
             this.Controls.Add(this.btnReverToDefault);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMain";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

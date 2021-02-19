@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,66 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="APPNAME_MUST_BE_SPECIFIED" xml:space="preserve">
+    <value>Appname must be specified.</value>
+  </data>
+  <data name="DEFAULTTYPE_MUST_BE_0123" xml:space="preserve">
+    <value>Defaultpathtype must be 0,1,2 or 3.</value>
+  </data>
+  <data name="FOLDER_MUST_NOT_BE_EMPTY" xml:space="preserve">
+    <value>Folder must not be empty.</value>
+  </data>
+  <data name="FOLDER_SETTINGS_SAVEFAILED" xml:space="preserve">
+    <value>Failed to save folder settings.</value>
+  </data>
+  <data name="FOLDER_SETTINGS_SAVEOK" xml:space="preserve">
+    <value>Succeeded to save folder settings.</value>
+  </data>
+  <data name="HELP_APPNAME" xml:space="preserve">
+    <value>Appname: App name used as subfolder of Creator.</value>
+  </data>
+  <data name="HELP_CREATOR" xml:space="preserve">
+    <value>Creator: Creator name used as subfolder of roaming or local folder.</value>
+  </data>
+  <data name="HELP_CULTURE" xml:space="preserve">
+    <value>Culture: Culture string, (ex) \"ja-JP\".</value>
+  </data>
+  <data name="HELP_DEFAULT_FILE" xml:space="preserve">
+    <value>Defaultpathtype: 0,1,2 or 3.</value>
+  </data>
+  <data name="HELP_DEFAULT_PATH0" xml:space="preserve">
+    <value>Defaultpath0: Default relative path from exe-resident folder for pathtype of 0. (Default is Exe-resident folder)</value>
+  </data>
+  <data name="HELP_DEFAULT_PATH3" xml:space="preserve">
+    <value>Defaultpath3: Default full path for pathytpe of 3.</value>
+  </data>
+  <data name="HELP_INIFILE" xml:space="preserve">
+    <value>Inifile: filename user chosen data will be saved. (Default is folder.ini)</value>
+  </data>
+  <data name="HELP_SECTION_NAME_OF_CONFIG" xml:space="preserve">
+    <value>Section: Section name of config. (Default is [Main])</value>
+  </data>
+  <data name="HELP_TITLE" xml:space="preserve">
+    <value>Title: Title shown in Titlebar.</value>
+  </data>
+  <data name="UNKNOWN_OPTION" xml:space="preserve">
+    <value>Unknown option:</value>
+  </data>
+  <data name="USAGE" xml:space="preserve">
+    <value>Usage</value>
+  </data>
+  <data name="_0_HAS_WRONG_VALUE" xml:space="preserve">
+    <value>{0} has wrong value.</value>
+  </data>
+  <data name="_0_IS_SET_TWICE" xml:space="preserve">
+    <value>'{0}' is set more than twice.</value>
+  </data>
+  <data name="_0_MUST_NOT_INCLUDE_1" xml:space="preserve">
+    <value>{0} must not include {1}.</value>
+  </data>
 </root>

@@ -166,9 +166,6 @@ cmd /C copyv "$(ProjectDir)FolderConfig-ReadMe.txt" "$(TargetDir)"
     <ProjectReference Include="..\FolderConfigHelper\FolderConfigHelper.csproj">
       <Project>{f29ee974-ba47-4060-866a-98e9f7525962}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\FolderConfig\FolderConfig.vcxproj">
-      <Project>{f6b6ce6b-39fd-41b2-98a6-b2ccc47660a8}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
