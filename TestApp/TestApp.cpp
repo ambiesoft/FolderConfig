@@ -54,7 +54,7 @@ int main(array<System::String ^> ^args)
 				Console::WriteLine("Cancel");
 		}
 
-		String^ ninjaPath = FolderConfigHelper::GetConfigPath("Ninja");
+		String^ ninjaPath = FolderConfigHelper::GetConfigPath("Ninja", "Ambiesoft", "MyApp");
 		Console::WriteLine("Ninja path={0}", ninjaPath);
 
 		wstring inipath = stdCombinePath(stdGetParentDirectory(stdGetModuleFileName<wchar_t>()), L"folder.ini");

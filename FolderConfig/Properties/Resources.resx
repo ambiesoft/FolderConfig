@@ -139,7 +139,7 @@
     <value>Creator: Creator name used as subfolder of roaming or local folder.</value>
   </data>
   <data name="HELP_CULTURE" xml:space="preserve">
-    <value>Culture: Culture string, (ex) \"ja-JP\".</value>
+    <value>Culture: Culture string, (ex) "ja-JP".</value>
   </data>
   <data name="HELP_DEFAULT_FILE" xml:space="preserve">
     <value>Defaultpathtype: 0,1,2 or 3.</value>

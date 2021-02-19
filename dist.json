@@ -1,0 +1,38 @@
+{
+    "name": "FolderConfig",
+    "solution": "FolderConfig.sln",
+    "targetproject": "zzzDist",
+    "configuration": "Release",
+    "targets": [
+        {
+            "setoutdirforbuild": true,
+            "outdir": "build\\FolderConfig\\",
+            "platform": "Win32"
+        }
+    ],
+    "ShouldBeFiles": [
+        "Ambiesoft.AmbLib.dll",
+        "Ambiesoft.AmbLib.pdb",
+        "Ambiesoft.FolderConfig.dll",
+        "Ambiesoft.FolderConfig.pdb",
+        "Ambiesoft.FolderConfigHelper.dll",
+        "Ambiesoft.FolderConfigHelper.pdb",
+        "Ambiesoft.Profile.dll",
+        "Ambiesoft.Profile.pdb",
+        "FolderConfig-History.txt",
+        "FolderConfig-License.txt",
+        "FolderConfig-ReadMe.txt",
+        "FolderConfig.exe",
+        "FolderConfig.ini.sample",
+        "FolderConfig.pdb",
+        "ja-JP\\Ambiesoft.FolderConfig.resources.dll"
+    ],
+    "TotalFileCount": "exact",
+    "archivedir": "C:\\Linkout",
+    "remotedir": "http://ambiesoft.mooo.com/ffdav/uploads/FolderConfig/",
+    "remotesha1": "http://ambiesoft.mooo.com/ffdav/uploads/getSha1.php?file=FolderConfig/{}",
+    "ShouldNotBeFiles": [],
+    "ShouldBeOneOfThem": [],
+    "obtainverfrom": "FolderConfig-History.txt",
+    "obtainverregex": "\\d+\\.\\d+\\.\\d+"
+}

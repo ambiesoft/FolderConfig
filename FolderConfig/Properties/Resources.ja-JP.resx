@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="APPNAME_MUST_BE_SPECIFIED" xml:space="preserve">
+    <value>Appname が指定されていません。</value>
+  </data>
+  <data name="DEFAULTTYPE_MUST_BE_0123" xml:space="preserve">
+    <value>Defaultpathtype は 0,1,2,3 のどれかでなければなりません。</value>
+  </data>
+  <data name="FOLDER_MUST_NOT_BE_EMPTY" xml:space="preserve">
+    <value>Folder は空であってはなりません。</value>
+  </data>
+  <data name="FOLDER_SETTINGS_SAVEFAILED" xml:space="preserve">
+    <value>フォルダ設定の保存に失敗しました。</value>
+  </data>
+  <data name="FOLDER_SETTINGS_SAVEOK" xml:space="preserve">
+    <value>フォルダ設定の保存に成功しました。</value>
+  </data>
+  <data name="HELP_APPNAME" xml:space="preserve">
+    <value>Appname: Creatorの下につくられるサブフォルダ名に使用されます。</value>
+  </data>
+  <data name="HELP_CREATOR" xml:space="preserve">
+    <value>Creator: ローミングやローカルフォルダ時ののサブフォルダ名として使用されます。</value>
+  </data>
+  <data name="HELP_CULTURE" xml:space="preserve">
+    <value>Culture: カルチャー文字列 (ex) "ja-JP".</value>
+  </data>
+  <data name="HELP_DEFAULT_FILE" xml:space="preserve">
+    <value>Defaultpathtype: 0,1,2 または 3.</value>
+  </data>
+  <data name="HELP_DEFAULT_PATH0" xml:space="preserve">
+    <value>Defaultpath0: デフォルトの実行ファイルからの相対パス。pathtypeが 0 のときに使用されます。（デフォルトでは実行ファイルの存在するフォルダそのもの）</value>
+  </data>
+  <data name="HELP_DEFAULT_PATH3" xml:space="preserve">
+    <value>Defaultpath3: pathytpe が 3 のときのデフォルトパス。</value>
+  </data>
+  <data name="HELP_INIFILE" xml:space="preserve">
+    <value>Inifile: 設定が保存されるファイル。 （デフォルトでは folder.ini）</value>
+  </data>
+  <data name="HELP_SECTION_NAME_OF_CONFIG" xml:space="preserve">
+    <value>Section: 設定のセクション。（デフォルトは [Main] ）</value>
+  </data>
+  <data name="HELP_TITLE" xml:space="preserve">
+    <value>Title: タイトルバーに表示されるタイトル。</value>
+  </data>
+  <data name="UNKNOWN_OPTION" xml:space="preserve">
+    <value>未知のオプション:</value>
+  </data>
+  <data name="USAGE" xml:space="preserve">
+    <value>使用法</value>
+  </data>
+  <data name="_0_HAS_WRONG_VALUE" xml:space="preserve">
+    <value>{0} は不正な値を所有しています。</value>
+  </data>
+  <data name="_0_IS_SET_TWICE" xml:space="preserve">
+    <value>'{0}' が2回かそれ以上設定されています。</value>
+  </data>
+  <data name="_0_MUST_NOT_INCLUDE_1" xml:space="preserve">
+    <value>{0} は {1} を含むことはできません。</value>
+  </data>
 </root>

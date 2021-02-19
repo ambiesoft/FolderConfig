@@ -17,6 +17,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderConfig", "FolderConfi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderConfigLauncher", "FolderConfigLauncher\FolderConfigLauncher.csproj", "{4A4CC341-3F6D-44FC-8283-350B64DA2F72}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zzzDist", "zzzDist\zzzDist.vcxproj", "{B4146369-57AF-45A6-AA7C-B9F14CA4C11B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4A4CC341-3F6D-44FC-8283-350B64DA2F72} = {4A4CC341-3F6D-44FC-8283-350B64DA2F72}
+		{9A6C4A57-F560-486D-83EC-B0453C41CE7A} = {9A6C4A57-F560-486D-83EC-B0453C41CE7A}
+		{F29EE974-BA47-4060-866A-98E9F7525962} = {F29EE974-BA47-4060-866A-98E9F7525962}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +80,12 @@ Global
 		{4A4CC341-3F6D-44FC-8283-350B64DA2F72}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A4CC341-3F6D-44FC-8283-350B64DA2F72}.Release|Win32.ActiveCfg = Release|Any CPU
 		{4A4CC341-3F6D-44FC-8283-350B64DA2F72}.Release|Win32.Build.0 = Release|Any CPU
+		{B4146369-57AF-45A6-AA7C-B9F14CA4C11B}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{B4146369-57AF-45A6-AA7C-B9F14CA4C11B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B4146369-57AF-45A6-AA7C-B9F14CA4C11B}.Debug|Win32.Build.0 = Debug|Win32
+		{B4146369-57AF-45A6-AA7C-B9F14CA4C11B}.Release|Any CPU.ActiveCfg = Release|Win32
+		{B4146369-57AF-45A6-AA7C-B9F14CA4C11B}.Release|Win32.ActiveCfg = Release|Win32
+		{B4146369-57AF-45A6-AA7C-B9F14CA4C11B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
