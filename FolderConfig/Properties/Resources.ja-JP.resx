@@ -153,8 +153,11 @@
   <data name="HELP_INIFILE" xml:space="preserve">
     <value>Inifile: 設定が保存されるファイル。 （デフォルトでは folder.ini）</value>
   </data>
+  <data name="HELP_NOOKMESSAGE" xml:space="preserve">
+    <value>nookmessage:成功時のメッセージを表示しません。</value>
+  </data>
   <data name="HELP_SECTION_NAME_OF_CONFIG" xml:space="preserve">
-    <value>Section: 設定のセクション。（デフォルトは [Main] ）</value>
+    <value>Section: 設定のセクション。（デフォルトは 'Main' ）</value>
   </data>
   <data name="HELP_TITLE" xml:space="preserve">
     <value>Title: タイトルバーに表示されるタイトル。</value>

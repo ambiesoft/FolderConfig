@@ -25,18 +25,18 @@ namespace Ambiesoft.FolderConfig
 
 		private void FormMain_Load(object sender, EventArgs e)
 		{
-			Debug.Assert(!string.IsNullOrEmpty(Settings.Section));
+			Debug.Assert(!string.IsNullOrEmpty(Settings.UserSection));
 			try
 			{
 				int pathtype = 0;
-				Profile.GetInt(Settings.Section, KEY_PATH_TYPE, -1, out pathtype, Settings.UserIniFullpath);
+				Profile.GetInt(Settings.UserSection, KEY_PATH_TYPE, -1, out pathtype, Settings.UserIniFullpath);
 				if (pathtype == -1)
 				{
 					pathtype = Settings.DefaultPathType;
 				}
 
 				string uspath;
-				if (Profile.GetString(Settings.Section, KEY_FOLDER, string.Empty, out uspath, Settings.UserIniFullpath))
+				if (Profile.GetString(Settings.UserSection, KEY_FOLDER, string.Empty, out uspath, Settings.UserIniFullpath))
 					folbrow.SelectedPath = uspath;
 				else
 				{
@@ -77,10 +77,54 @@ namespace Ambiesoft.FolderConfig
 				radioUnderThis.Checked = true;
 			}
 
-
 			Text = String.IsNullOrEmpty(Settings.Title) ?
-				ProductName + " | " + Settings.AppName + " | " + Settings.Section :
+				ProductName + " | " + Settings.AppName + " | " + Settings.UserSection :
 				Settings.Title;
+
+			if(!string.IsNullOrEmpty( Settings.DebugOperation))
+            {
+				string[] commands = Settings.DebugOperation.Split(',');
+				foreach(var command in commands)
+                {
+					string[] av = command.Split(':');
+					if(av.Length != 2)
+                    {
+						MessageBox.Show("Command must not include more than two colon.");
+                    }
+					string action = av[0];
+					string value = av[1];
+
+					switch(action)
+                    {
+						case "select":
+							switch(value)
+                            {
+								case "0": this.radioUnderThis.Checked = true; break;
+								case "1": this.radioLocal.Checked = true; break;
+								case "2": this.radioRoaming.Checked = true; break;
+								case "3": this.radioUserDefine.Checked = true; break;
+								default:
+									MessageBox.Show("Illegal value for action" + value);
+									break;
+							}
+							break;
+						case "click":
+							switch(value)
+                            {
+								case "OK": btnOK.PerformClick();break;
+								case "CANCEL":btnCancel.PerformClick();break;
+								default:
+									MessageBox.Show("Unknown value:" + value);
+									break;
+							}
+							break;
+						default:
+							MessageBox.Show("Unknown action:" + action);
+							break;
+					}
+                }
+				// btnOK.PerformClick();
+            }
 		}
 
 		void checkedCommon(int i)
@@ -187,9 +231,9 @@ namespace Ambiesoft.FolderConfig
 				{
 					bool failed = false;
 
-					failed |= !Profile.WriteInt(Settings.Section, KEY_PATH_TYPE, curc_, Settings.UserIniFullpath);
+					failed |= !Profile.WriteInt(Settings.UserSection, KEY_PATH_TYPE, curc_, Settings.UserIniFullpath);
 					if (curc_ == 3)
-						failed |= !Profile.WriteString(Settings.Section, KEY_FOLDER, textFolder.Text, Settings.UserIniFullpath);
+						failed |= !Profile.WriteString(Settings.UserSection, KEY_FOLDER, textFolder.Text, Settings.UserIniFullpath);
 
 					ok = !failed;
 				}
@@ -208,15 +252,17 @@ namespace Ambiesoft.FolderConfig
 				}
 				else
 				{
-					MessageBox.Show(
-						this,
-						Properties.Resources.FOLDER_SETTINGS_SAVEOK,
-						ProductName,
-						MessageBoxButtons.OK,
-						MessageBoxIcon.Information);
+					if (!Settings.NoOkMessage)
+					{
+						MessageBox.Show(
+							this,
+							Properties.Resources.FOLDER_SETTINGS_SAVEOK,
+							ProductName,
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Information);
+					}
 				}
 			}
-
 		}
 
 		private void btnReverToDefault_Click(object sender, EventArgs e)
@@ -226,8 +272,8 @@ namespace Ambiesoft.FolderConfig
 			{
 				bool failed = false;
 
-				failed |= !Profile.WriteString(Settings.Section, KEY_PATH_TYPE, null, Settings.UserIniFullpath);
-				failed |= !Profile.WriteString(Settings.Section, KEY_FOLDER, null, Settings.UserIniFullpath);
+				failed |= !Profile.WriteString(Settings.UserSection, KEY_PATH_TYPE, null, Settings.UserIniFullpath);
+				failed |= !Profile.WriteString(Settings.UserSection, KEY_FOLDER, null, Settings.UserIniFullpath);
 
 				ok = !failed;
 			}

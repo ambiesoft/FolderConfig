@@ -60,7 +60,7 @@ int __stdcall wWinMain(
 		ss << L"folder=" << toWString(folder) << endl;
 	}
 
-	MessageBox(nullptr, ss.str().c_str(), nullptr, MB_ICONINFORMATION);
+	MessageBox(nullptr, ss.str().c_str(), L"TestAppCpp", MB_ICONINFORMATION);
 	return 0;
 }
 

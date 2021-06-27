@@ -158,7 +158,7 @@ namespace Ambiesoft
 
         public static bool GetUserSettingExists(string section)
         {
-            string ini = Path.Combine(AppDir, "folder.ini");
+            string ini = Path.Combine(AppDir, FolderConfig.Program.InifileName);
             if (!File.Exists(ini))
                 return false;
 
@@ -183,8 +183,7 @@ namespace Ambiesoft
         }
         static string GetConfigPathImpl(string section, string creator, string appname)
         {
-
-            string ini = Path.Combine(AppDir, "folder.ini");
+            string ini = Path.Combine(AppDir, FolderConfig.Program.InifileName);
             if (!File.Exists(ini))
                 return GetDefaultConfigPath(section, -1, creator, appname);
 

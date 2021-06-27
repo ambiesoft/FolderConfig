@@ -7,5 +7,6 @@
 
 #include <Windows.h>
 #include <Winerror.h>
+#include <shlobj_core.h>
 
 #include <string>

@@ -10,45 +10,37 @@ namespace Ambiesoft.FolderConfig
 {
     internal abstract class Settings
     {
-        public const string ProductName = "FolderConfig";
-
         private static string title_;
-
         private static string creator_;
         private static string appName_;
-        static string section_;
-
-        private const string section_default_ = "Main";
-
+        static string appSection_;
+        static string userSection_;
         private static int defaultpathtype_;
-
         private static string defaultpath0_;
         private static string defaultpath3_;
-
-
-        private const string userInifileName_ = "folder.ini";
-
-        // private static bool initialized_;
+        
+        public static string DebugOperation = null;
+        public static bool NoOkMessage = false;
 
         static string getHelpMessage()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(Properties.Resources.USAGE + ":");
-            sb.AppendLine("FolderConfig.exe [/section Section] [/title Title] [/inifile Inifile] /defaultpathtype Defaultpathtype [/defaultpath0 Defaultpath0] [/defaultpath3 Defaultpath3] [/creator Creator] [/appname Appname] [/culture Culture]");
+            sb.AppendLine("FolderConfig.exe [/section Section] [/title Title] /defaultpathtype Defaultpathtype [/defaultpath0 Defaultpath0] [/defaultpath3 Defaultpath3] [/creator Creator] [/appname Appname] [/culture Culture] [/nookmessage]");
             sb.AppendLine();
 
             sb.AppendLine(Properties.Resources.HELP_SECTION_NAME_OF_CONFIG);
 
             sb.AppendLine(Properties.Resources.HELP_TITLE);
-            sb.AppendLine(Properties.Resources.HELP_INIFILE);
+            // sb.AppendLine(Properties.Resources.HELP_INIFILE);
 
             sb.AppendLine(Properties.Resources.HELP_DEFAULT_FILE);
             sb.AppendLine(Properties.Resources.HELP_DEFAULT_PATH0);
             sb.AppendLine(Properties.Resources.HELP_DEFAULT_PATH3);
             sb.AppendLine(Properties.Resources.HELP_CREATOR);
             sb.AppendLine(Properties.Resources.HELP_APPNAME);
-
             sb.AppendLine(Properties.Resources.HELP_CULTURE);
+            sb.AppendLine(Properties.Resources.HELP_NOOKMESSAGE);
 
             return sb.ToString();
         }
@@ -56,14 +48,14 @@ namespace Ambiesoft.FolderConfig
         static void ShowError(string s)
         {
             MessageBox.Show(s + "\r\n\r\n" + getHelpMessage(),
-                Settings.ProductName,
+                Program.ProductName,
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
         }
         static void Alert(string msg)
         {
             MessageBox.Show(msg,
-                Settings.ProductName,
+                Program.ProductName,
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning);
         }
@@ -93,17 +85,91 @@ namespace Ambiesoft.FolderConfig
 
             return name.IndexOfAny(GetFileInamableCharsString().ToCharArray()) < 0;
         }
+
+        static void SetCulture(string culture)
+        {
+            if (string.IsNullOrEmpty(culture))
+                return;
+
+            try
+            {
+                var ci = new System.Globalization.CultureInfo(culture);
+                System.Threading.Thread.CurrentThread.CurrentCulture = ci;
+                System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+            }
+            catch (Exception ex)
+            {
+                Alert(ex);
+            }
+        }
         public static bool init(string[] args)
         {
+            string culture = null;
+
+            // Get section from commandline to determin AppSection
+            {
+                var optionSet = new OptionSet() {
+                    {
+                        "section=",
+                        v => {
+                            appSection_=v;
+                        }
+                    },
+                };
+                optionSet.Parse(args);
+            }
+
+            // First, Read from 'FolderConfig.ini'
+            {
+                string inipath = Path.Combine(
+                    Path.GetDirectoryName(Application.ExecutablePath),
+                    Program.ProductName + ".ini");
+
+                HashIni ini = Profile.ReadAll(inipath);
+
+                Profile.GetString(AppSection, "title", null, out title_, ini);
+                Profile.GetString(AppSection, "appname", null, out appName_, ini);
+                Profile.GetString(AppSection, "creator", null, out creator_, ini);
+                Profile.GetInt(AppSection, "defaultpathtype", -1, out defaultpathtype_, ini);
+                Profile.GetString(AppSection, "defaultpath0", null, out defaultpath0_, ini);
+                Profile.GetString(AppSection, "defaultpath3", null, out defaultpath3_, ini);
+                Profile.GetString(AppSection, "culture", null, out culture, ini);
+                Profile.GetString(AppSection, "section", userSection_, out userSection_, ini);
+#if DEBUG
+                if (!String.IsNullOrEmpty(title_))
+                    System.Diagnostics.Debug.Print("title is \"{0}\" (from \"{1}\")", title_, inipath);
+                if (!String.IsNullOrEmpty(appName_))
+                    System.Diagnostics.Debug.Print("Appname is \"{0}\" (from \"{1}\")", appName_, inipath);
+                if (!String.IsNullOrEmpty(creator_))
+                    System.Diagnostics.Debug.Print("Creator is \"{0}\" (from \"{1}\")", creator_, inipath);
+                if (defaultpathtype_ >= 0)
+                    System.Diagnostics.Debug.Print("defaultpathtype is \"{0}\" (from \"{1}\")", defaultpathtype_, inipath);
+                if (!String.IsNullOrEmpty(defaultpath0_))
+                    System.Diagnostics.Debug.Print("defaultpath0_ is \"{0}\" (from \"{1}\")", defaultpath0_, inipath);
+                if (!String.IsNullOrEmpty(defaultpath3_))
+                    System.Diagnostics.Debug.Print("defaultpath3_ is \"{0}\" (from \"{1}\")", defaultpath3_, inipath);
+                if (!String.IsNullOrEmpty(culture))
+                    System.Diagnostics.Debug.Print("culture is \"{0}\" (from \"{1}\")", culture, inipath);
+                if (!String.IsNullOrEmpty(userSection_))
+                    System.Diagnostics.Debug.Print("section is \"{0}\" (from \"{1}\")", userSection_, inipath);
+#endif
+            }
+
+            // Early for culture for error message
+            SetCulture(culture);
+
+            // Next Read from command line
             string opTitle = null;
             string opDefaultPathType = null;
             string opDefaultPath0 = null;
             string opDefaultPath3 = null;
             string opCreator = null;
             string opAppName = null;
-            string opSection = null;
+            string opUserSection = null;
             string opCulture = null;
             bool opHelp = false;
+            string opDebug = null;
+            bool opNoOkMessage = false;
 
             string errorOp = null;
             var p = new OptionSet() {
@@ -170,11 +236,11 @@ namespace Ambiesoft.FolderConfig
                     {
                         "section=",
                         v => {
-                            if(!string.IsNullOrEmpty(opSection))
+                            if(!string.IsNullOrEmpty(opUserSection))
                             {
                                 errorOp="section";
                             }
-                            opSection=v;
+                            opUserSection=v;
                         }
                     },
                     {
@@ -188,9 +254,25 @@ namespace Ambiesoft.FolderConfig
                         }
                     },
                     {
-                        "h|?|help",
+                        "h|?|help|v|version",
                         v => {
                             opHelp=true;
+                        }
+                    },
+                    {
+                        "debug=",
+                        v => {
+                            if(!string.IsNullOrEmpty(opDebug))
+                            {
+                                errorOp="debug";
+                            }
+                            opDebug=v;
+                        }
+                    },
+                    {
+                        "nookmessage",
+                        v => {
+                            opNoOkMessage=true;
                         }
                     },
 
@@ -204,71 +286,21 @@ namespace Ambiesoft.FolderConfig
                 return false;
             }
 
-            string culture = null;
-
-            string inipath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath),
-                ProductName + ".ini");
-
-            HashIni ini = Profile.ReadAll(inipath);
-
-            if (opSection != null)
-            {
-                section_ = opSection;
-            }
-            if (string.IsNullOrEmpty(Section))
-            {
-                section_ = section_default_;
-            }
-
-
-            Profile.GetString(Section, "title", null, out title_, ini);
-            Profile.GetString(Section, "appname", null, out appName_, ini);
-            Profile.GetString(Section, "creator", null, out creator_, ini);
-            Profile.GetInt(Section, "defaultpathtype", -1, out defaultpathtype_, ini);
-            Profile.GetString(Section, "defaultpath0", null, out defaultpath0_, ini);
-            Profile.GetString(Section, "defaultpath3", null, out defaultpath3_, ini);
-            Profile.GetString(Section, "culture", null, out culture, ini);
-#if DEBUG
-            if (!String.IsNullOrEmpty(title_))
-                System.Diagnostics.Debug.Print("title is \"{0}\" (from \"{1}\")", title_, inipath);
-            if (!String.IsNullOrEmpty(appName_))
-                System.Diagnostics.Debug.Print("Appname is \"{0}\" (from \"{1}\")", appName_, inipath);
-            if (!String.IsNullOrEmpty(creator_))
-                System.Diagnostics.Debug.Print("Creator is \"{0}\" (from \"{1}\")", creator_, inipath);
-            if (defaultpathtype_ >= 0)
-                System.Diagnostics.Debug.Print("defaultpathtype is \"{0}\" (from \"{1}\")", defaultpathtype_, inipath);
-            if (!String.IsNullOrEmpty(defaultpath0_))
-                System.Diagnostics.Debug.Print("defaultpath0_ is \"{0}\" (from \"{1}\")", defaultpath0_, inipath);
-            if (!String.IsNullOrEmpty(defaultpath3_))
-                System.Diagnostics.Debug.Print("defaultpath3_ is \"{0}\" (from \"{1}\")", defaultpath3_, inipath);
-            if (!String.IsNullOrEmpty(culture))
-                System.Diagnostics.Debug.Print("culture is \"{0}\" (from \"{1}\")", culture, inipath);
-#endif
-
-
             // First, set culture for I18N
             if (opCulture != null)
             {
                 culture = opCulture;
             }
-            if (!string.IsNullOrEmpty(culture))
-            {
-                try
-                {
-                    var ci = new System.Globalization.CultureInfo(culture);
-                    System.Threading.Thread.CurrentThread.CurrentCulture = ci;
-                    System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
-                }
-                catch (Exception ex)
-                {
-                    Alert(ex);
-                }
-            }
+            SetCulture(culture);
 
             if (opHelp)
             {
+                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+                string version = fvi.FileVersion;
+
                 MessageBox.Show(getHelpMessage(),
-                    ProductName,
+                    string.Format("{0} v{1}", Program.ProductName, version),
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                     );
@@ -338,14 +370,13 @@ namespace Ambiesoft.FolderConfig
                 ShowError(Properties.Resources.APPNAME_MUST_BE_SPECIFIED);
                 return false;
             }
+            if (opUserSection != null)
+            {
+                userSection_ = opUserSection;
+            }
 
-
-
-
-
-
-
-
+            Settings.NoOkMessage = opNoOkMessage;
+            Settings.DebugOperation = opDebug;
 
             if (extra.Count != 0)
             {
@@ -366,9 +397,13 @@ namespace Ambiesoft.FolderConfig
                 return title_;
             }
         }
-        public static string Section
+        public static string AppSection
         {
-            get { return section_; }
+            get { return appSection_?? "Main"; }
+        }
+        public static string UserSection
+        {
+            get { return userSection_?? "Main"; }
         }
         static string ThisDir
         {
@@ -381,7 +416,7 @@ namespace Ambiesoft.FolderConfig
         {
             get
             {
-                return System.IO.Path.Combine(ThisDir, userInifileName_);
+                return System.IO.Path.Combine(ThisDir, Program.InifileName);
             }
         }
         public static string Creator

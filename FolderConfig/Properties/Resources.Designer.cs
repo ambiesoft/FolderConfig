@@ -196,7 +196,16 @@ namespace Ambiesoft.FolderConfig.Properties {
         }
         
         /// <summary>
-        ///   Section: Section name of config. (Default is [Main]) に類似しているローカライズされた文字列を検索します。
+        ///   nookmessage:does not show succeeded message. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string HELP_NOOKMESSAGE {
+            get {
+                return ResourceManager.GetString("HELP_NOOKMESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Section: Section name of config. (Default is &apos;Main&apos;) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string HELP_SECTION_NAME_OF_CONFIG {
             get {

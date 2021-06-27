@@ -153,8 +153,11 @@
   <data name="HELP_INIFILE" xml:space="preserve">
     <value>Inifile: filename user chosen data will be saved. (Default is folder.ini)</value>
   </data>
+  <data name="HELP_NOOKMESSAGE" xml:space="preserve">
+    <value>nookmessage:does not show succeeded message.</value>
+  </data>
   <data name="HELP_SECTION_NAME_OF_CONFIG" xml:space="preserve">
-    <value>Section: Section name of config. (Default is [Main])</value>
+    <value>Section: Section name of config. (Default is 'Main')</value>
   </data>
   <data name="HELP_TITLE" xml:space="preserve">
     <value>Title: Title shown in Titlebar.</value>

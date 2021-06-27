@@ -77,6 +77,9 @@ namespace Ambiesoft.FolderConfig
 
 	public static class Program
     {
+		public const string ProductName = "FolderConfig";
+		public const string InifileName = "folder.ini";
+
 		static int MakeRetval(bool success, ErrorReturnValue errorCode, bool okcancel)
 		{
 			return (int)(
